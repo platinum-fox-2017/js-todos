@@ -21,7 +21,7 @@ class ToDoView {
         }
     }
 
-    static list_created(task,option){
+    static list_created(option,task){
         let arrTemp = task.map(x=>x);
         if(option==undefined || option=='dsc'){
             arrTemp.sort((a,b) => {
@@ -42,18 +42,18 @@ class ToDoView {
             });
         }
         for (let i = 0; i < arrTemp.length; i++) {
-            console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+            console.log(`${task.indexOf(arrTemp[i])+1}. ${ToDoView.done_to_char(arrTemp[i].done)} ${arrTemp[i].task} [${arrTemp[i].tag.join(", ")}]`);
         }
 
     }
 
-    static tag(task, tags){
+    static tag(option, task, tags){
         if(tags != undefined){
-            console.log(`Tagged task "${task}" with tags ${tags.join(" ")}`);
+            console.log(`Tagged task "${task[option-1].task}" with tags ${tags.join(" ")}`);
         }
     }
 
-    static list_filter(task, tags){
+    static list_filter(tags, task){
         let arrTemp = task.map(x=>x);
         arrTemp.sort((a,b) => {
             if((new Date(a.date)) >(new Date(b.date)))
@@ -66,12 +66,12 @@ class ToDoView {
         for (let i = 0; i < arrTemp.length; i++) {
             if(arrTemp[i].tag.indexOf(tags)!=-1)
             {
-                console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+                console.log(`${task.indexOf(arrTemp[i])+1}. ${ToDoView.done_to_char(arrTemp[i].done)} ${arrTemp[i].task} [${arrTemp[i].tag.join(", ")}]`);
             }
         }
     }
 
-    static list_completed(task){
+    static list_completed(option, task){
         let arrTemp = task.map(x=>x);
         arrTemp.sort((a,b) => {
             if((new Date(a.date)) >(new Date(b.date)))
@@ -84,14 +84,14 @@ class ToDoView {
         for (let i = 0; i < arrTemp.length; i++) {
             if(arrTemp[i].done==true)
             {
-                console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+                console.log(`${task.indexOf(arrTemp[i])+1}. ${ToDoView.done_to_char(arrTemp[i].done)} ${arrTemp[i].task} [${arrTemp[i].tag.join(", ")}]`);
             }
         }
     }
 
-    static list(task) {
+    static list(option,task) {
         for (let i = 0; i < task.length; i++) {
-            console.log(`${i+1}. ${this.done_to_char(task[i].done)} ${task[i].task}`);
+            console.log(`${i+1}. ${ToDoView.done_to_char(task[i].done)} ${task[i].task} [${task[i].tag.join(", ")}]`);
         }
     }
 
@@ -99,12 +99,12 @@ class ToDoView {
         console.log(`Added "${input}" to your TODO list...`);
     }
 
-    static findById(input, task) {
-        console.log(`${input}. ${this.done_to_char(task.done)} ${task.task}`);
+    static findById(option, task) {
+        console.log(`${option}. ${ToDoView.done_to_char(task[option-1].done)} ${task[option-1].task}`);
     }
 
-    static delete(task) {
-        console.log(`Deleted "${task}" from your TODO list...`);
+    static delete(data,option) {
+        console.log(`Deleted "${data[option-1].task}" from your TODO list...`);
     }
 }
 

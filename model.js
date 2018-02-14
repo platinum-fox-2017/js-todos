@@ -3,54 +3,68 @@
 const fs = require('fs');
 // const dataFile = fs.readFileSync('./data.json', 'utf8');
 
-
-
 class ToDoModel {
-    constructor(data) {
-        this._data = data;
-        this._task = JSON.parse(this._data);
+    static read(callback,option){
+        fs.readFile('./data.json', 'utf8',(err,data)=> {
+            if(err)
+                throw err;
+            let dataParse = JSON.parse(data);
+            callback(option,dataParse);
+        });
     }
 
-    get task() {
-        return this._task;
+    static write(callback,callback2,option,option2){
+        fs.readFile('./data.json', 'utf8',(err,data)=> {
+            if(err)
+                throw err;
+            let dataParse = JSON.parse(data);
+            callback(dataParse,option,option2);
+            callback2(option,dataParse,option2);
+        });
     }
 
-    write(task){
+    static writeToFile(task){
         fs.writeFile('./data.json', JSON.stringify(task), (err) => {
             if(err) throw err;
             console.log('The file has been saved');
         });
     }
 
-    tag(id, tags){
+    static tag(data, id, tags){
         for(let i = 0; i < tags.length; i++){
-            this._task[id-1].tag.push(tags[i]);
+            if(data[id-1].tag.indexOf(tags[i])==-1)
+                data[id-1].tag.push(tags[i]);
         }
-        this.write(this._task);
+        ToDoModel.writeToFile(data);
     }
 
-    add(input) {
-        this._task.push({
-            "task": input,
+    static add(dataParse,task) {
+        dataParse.push({
+            "task": task,
             "done": false,
-            "date": new Date().toString()
+            "date": new Date().toString(),
+            "tag": []
         });
-        this.write(this._task);
+        ToDoModel.writeToFile(dataParse);
     }
 
-    delete(input) {
-        this._task.splice(input-1,1);
-        this.write(this._task);
+    static length_count(option,arr){
+        return arr.length;
     }
 
-    complete(input){
-        this.task[input-1].done = true;
-        this.write(this._task);
+    static delete(option, data) {
+        data.splice(option-1,1);
+        ToDoModel.writeToFile(data);
     }
 
-    uncomplete(input){
-        this.task[input-1].done = false;
-        this.write(this._task);
+    static complete(data, option){
+        data[option-1].done = true;
+        ToDoModel.writeToFile(data);
+    }
+
+    static uncomplete(data,option){
+        data[option-1].done = false;
+        ToDoModel.writeToFile(data);
     }
 }
 
