@@ -22,7 +22,9 @@ switch(true){
     Controller.delete_to_do(value);
     break;
     case(command === 'complete'):
+    Controller.complete(value);
     break;
     case(command === 'uncomplete'):
+    Controller.uncomplete(value);
     break;
 }

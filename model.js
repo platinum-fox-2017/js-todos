@@ -31,6 +31,26 @@ class Model{
         fs.writeFileSync('./data.json',JSON.stringify(Model.to_do_list()));
         return deleted_data;
     }
+    static complete(check){
+        let data_x = data;
+        for(let i=0; i<data_x.length; i++){
+            if(parseInt(check) === i){
+                data_x[i].status = "[x]";
+            }
+        }
+        fs.writeFileSync('./data.json',JSON.stringify(data_x));
+        return data_x;
+    }
+    static uncomplete(uncheck){
+        let data_x = data;
+        for(let i=0; i<data_x.length; i++){
+            if(parseInt(uncheck) === i){
+                data_x[i].status = "[ ]";
+            }
+        }
+        fs.writeFileSync('./data.json',JSON.stringify(data_x));
+        return data_x;
+    }
 }
 
 module.exports = Model;

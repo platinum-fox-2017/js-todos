@@ -13,7 +13,7 @@ class View {
     static to_do_list(data){
         console.log('====================TO-DO LIST===========================');
         data.forEach((v,i,a)=>{
-            console.log(`NO-${i}--------${v.task}`);
+            console.log(`NO-${i}-----------${v.status}${v.task}`);
         });
         console.log('=========================================================');
     }
@@ -23,7 +23,7 @@ class View {
         console.log('=========================================================');
     }
     static find_by_id(data){
-        console.log('====================  DELETED  ==========================');
+        console.log('====================   FOUND   ==========================');
         console.log(data);
         console.log('=========================================================');
     }

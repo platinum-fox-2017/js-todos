@@ -18,8 +18,13 @@ class Controller {
     static delete_to_do(delete_task){
         return View.delete_to_do(Model.delete_to_do(delete_task));
     }
+    static complete(check){
+        return View.to_do_list(Model.complete(check));
+    }
+    static uncomplete(uncheck){
+        return View.to_do_list(Model.uncomplete(uncheck));
+    }
 }
-
 
 
 module.exports = Controller;
