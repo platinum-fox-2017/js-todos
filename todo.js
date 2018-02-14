@@ -123,4 +123,7 @@ switch(true) {
         break;
     case(command === "filter"):
         Todo.filterFunction(argv[1])
+        break;
+    default:
+        Todo.helpFunction()
 }

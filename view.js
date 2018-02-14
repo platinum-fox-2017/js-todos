@@ -1,8 +1,11 @@
 const chalk = require('chalk');
+const Table = require("terminal-table");
+
 
 class View{
     constructor(){}
     static helpFunctionView(){
+
         console.log(chalk.green(`node todo.js`))
         console.log(chalk.green(`node todo.js help`))
         console.log(chalk.green(`node todo.js list`))
@@ -11,17 +14,34 @@ class View{
         console.log(chalk.green(`node todo.js delete <task_id>`))
         console.log(chalk.green(`node todo.js complete <task_id>`))
         console.log(chalk.green(`node todo.js uncomplete < task_id>`))
+        console.log(chalk.green(`node todo.js list:created < asc/desc>`))
+        console.log(chalk.green(`node todo.js list:completed < asc/desc>`))
+        console.log(chalk.green(`node todo.js tag < task_id><tags>`))
+        console.log(chalk.green(`node todo.js filter < task_id>`))
     }
 
     static listView(data){
+        let table = new Table({
+            width: [10, 10, 20, 30]
+          });
         const view = data.map(each=>{
+            let tampung = []
             let tag = View.olahTags(each.tags)
             if(each.status === true){
-                console.log(chalk.green(`${each.id}. [X] ${each.task} ${tag}`))
+                tampung.push(each.id)
+                tampung.push("[X]")
+                tampung.push(each.task)
+                tampung.push(tag)
             }else{
-                console.log(chalk.green(`${each.id}. [ ] ${each.task} ${tag}`))
-            }  
+                tampung.push(each.id)
+                tampung.push("[ ]")
+                tampung.push(each.task)
+                tampung.push(tag)
+            }
+            table.push(tampung)  
         })
+
+        console.log(chalk.green(""+ table))
     }
 
     static olahTags(tags){
@@ -49,13 +69,26 @@ class View{
     }
 
     static sortView(data){
+        let table = new Table({
+            width: [10, 10, 20, 30]
+          });
         for(let [index,value] of data.entries()){
+            let tag = View.olahTags(value.tags)
+            let tmp = []
             if(value.status === true){
-                console.log(chalk.green(`${index+1}. [X] ${value.task}`))
+                tmp.push(index+1)
+                tmp.push("[X]")
+                tmp.push(value.task)
+                tmp.push(tag)
             }else{
-                console.log(chalk.green(`${index+1}. [ ] ${value.task}`))
-            } 
+                tmp.push(index+1)
+                tmp.push("[ ]")
+                tmp.push(value.task)
+                tmp.push(tag)
+            }
+            table.push(tmp) 
         }
+        console.log("" + table)
     }
 
     static addTagView(data){
