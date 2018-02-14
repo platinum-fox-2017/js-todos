@@ -19,7 +19,7 @@ class View {
     let beautify = ''
     for (var i = 0; i < data_from_cont.length; i++) {
       // console.log(data_from_cont[i].task);
-      beautify = `${i+1}. ${data_from_cont[i].task}`
+      beautify = `${i+1}. ${data_from_cont[i].status} ${data_from_cont[i].task}`
       console.log(beautify);
     }
   }
@@ -34,6 +34,24 @@ class View {
 
   static viewDeleted(data_from_cont) {
     console.log(`Deleted ${data_from_cont} from your TODO list...`);
+  }
+
+  static viewComplete(data_from_cont) {
+    let beautify = ''
+    for (var i = 0; i < data_from_cont.length; i++) {
+      // console.log(data_from_cont[i].task);
+      beautify = `${i+1}. ${data_from_cont[i].status} ${data_from_cont[i].task}`
+      console.log(beautify);
+    }
+  }
+
+  static viewUncomplete(data_from_cont) {
+    let beautify = ''
+    for (var i = 0; i < data_from_cont.length; i++) {
+      // console.log(data_from_cont[i].task);
+      beautify = `${i+1}. ${data_from_cont[i].status} ${data_from_cont[i].task}`
+      console.log(beautify);
+    }
   }
 }
 

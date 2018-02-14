@@ -18,13 +18,21 @@ class Controller {
       return View.showAdd(task_from_user)
     }
     else if (input === 'findById') {
-      let search = Model.findData(task_from_user)
-      return View.showFind(search)
+      let search_data = Model.findData(task_from_user)
+      return View.showFind(search_data)
     }
     else if (input === 'delete') {
       let delete_data = Model.deleteData(task_from_user)
       return View.viewDeleted(delete_data)
       // console.log(delete_data);
+    }
+    else if (input === 'complete') {
+      let complete_data = Model.completeData(task_from_user)
+      return View.viewComplete(complete_data)
+    }
+    else if (input === 'uncomplete') {
+      let uncomplete_data =Model.uncompleteData(task_from_user)
+      return View.viewUncomplete(uncomplete_data)
     }
     else {
       View.doNothing()

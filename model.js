@@ -13,7 +13,7 @@ class Model {
 
   static addData(data) {
     let file_json = Model.readData()
-    let newObj = { task: data }
+    let newObj = { task: data, status: '[ ]'}
     file_json.push(newObj)
     let json_str = JSON.stringify(file_json)
     fs.writeFileSync('data.json', json_str)
@@ -48,7 +48,47 @@ class Model {
     fs.writeFileSync('data.json', json_str)
     return deleted
   }
+
+  static completeData(data) {
+    let num_data = Number(data)
+    let file_json = Model.readData()
+    for (var i = 0; i < file_json.length; i++) {
+      if (num_data === i+1) {
+        file_json[i].status = '[x]'
+        // console.log(file_json[i]);
+      }
+    }
+    let json_str = JSON.stringify(file_json)
+    fs.writeFileSync('data.json', json_str)
+    return file_json
+  }
+
+  static uncompleteData(data) {
+    let num_data = Number(data)
+    let file_json = Model.readData()
+    for (var i = 0; i < file_json.length; i++) {
+      if (num_data === i+1) {
+        file_json[i].status = '[ ]'
+        // console.log(file_json[i]);
+      }
+    }
+    let json_str = JSON.stringify(file_json)
+    fs.writeFileSync('data.json', json_str)
+    return file_json
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Model.addData()
 
