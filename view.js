@@ -91,22 +91,40 @@ class View {
     }
   }
 
-  displayTagInfo(argv) {
-    let id = argv[3]
-    let tags = argv.slice(4)
+  displayAdd(argv){
+    console.log(`message : ${argv[3]} saved`);
   }
 
-  displaySortFilterJSON(sortDirection, err, data) {
+  displayDelete(argv, deletedData){
+    console.log(`Deleted ${deletedData.task} from your TODO kist....`);
+  }
+
+  displayComplete(argv, data){
+    console.log('data succesfully completed');
+  }
+
+  displayUncomplete(argv, data){
+    console.log('data succesfully uncompleted');
+  }
+
+  displayTagInfo(argv, data) {
+    let id = argv[3]
+    let tags = argv.slice(4)
+    console.log('tag addition succesful');
+  }
+
+  displaySortFilterJSON(tagCmd, sortDirection, err, data) {
     let array = JSON.parse(data)
     let arrayTag = []
     let arrayNotTag = []
     for (let i = 0; i < array.length; i++) {
-      if (array[i].tag !== []) {
-        arrayTag.push(array[i])
-      } else {
-        arrayNotTag.push(array[i])
+      for (let k = 0; k < array[i].tag.length; k++) {
+        if (array[i].tag[k] === tagCmd) {
+          arrayTag.push(array[i])
+        }
       }
     }
+
     if (sortDirection === 'desc') {
       arrayTag.sort(function(a, b){
         return new Date(b.created).getTime() - new Date(a.created).getTime()
@@ -116,10 +134,10 @@ class View {
         return new Date(a.created).getTime() - new Date(b.created).getTime()
       })
     }
-    
-    let sortedArray = arrayTag.concat(arrayNotTag)
+
+    let sortedArray = arrayTag
     for (let i = 0; i < sortedArray.length; i++) {
-      console.log(`${i+1}. [${sortedArray[i].check}] ${sortedArray[i].task} completed at: ${sortedArray[i].completedDate}`);
+      console.log(`${i+1}. [${sortedArray[i].tag}] ${sortedArray[i].task} created at: ${sortedArray[i].created}`);
     }
   }
 
