@@ -1,5 +1,1 @@
-[
-    {"id":"1", "task": "Bikin Aplikasi"},
-    {"id":"2", "task": "Main Node.js"},
-    {"id":"3", "task": "Membuat Object Class"}
-]
+[{"id":1,"status":"[.]","task":"Bikin Aplikasi"},{"id":2,"status":"[.]","task":"Main Node.js"},{"id":3,"status":"[X]","task":"Membuat Object Class"},{"id":4,"status":"[X]","task":"Benerin HP Eki"},{"id":5,"status":"[X]","task":"belajar untuk live code"},{"id":6,"status":"[.]","task":"update server SAP"}]
