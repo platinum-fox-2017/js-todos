@@ -38,6 +38,30 @@ class Controller{
         let unComplete = Model.unCompleteFunction(id)
         return View.listView(unComplete)
     }
+
+    static createdSort(command){
+        let data = Model.createdSort(command)
+        return View.sortView(data)
+    }
+
+    static completeSort(command){
+        let data = Model.completeSort(command)
+        if(data === 'Undefined'){
+            console.log("Tidak ada data yang completed")
+        }else{
+            return View.sortView(data)
+        }
+    }
+
+    static addTag(id,tags){
+        let data = Model.addTag(id,tags)
+        return View.addTagView(data)
+    }
+
+    static filterFunction(tag){
+        let data = Model.filterFunction(tag)
+        return View.listView(data)
+    }
 }
 
 module.exports = Controller

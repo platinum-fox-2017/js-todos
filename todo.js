@@ -55,6 +55,34 @@ class Todo{
             Controller.unCompleteFunction(numberId)
         }
     }
+
+    static createdSort(sort){
+        let standSort = sort.toLowerCase()
+        Controller.createdSort(standSort)   
+    }
+
+    static completeSort(sort){
+        
+        let standSort = sort.toLowerCase()
+        Controller.completeSort(standSort)
+    }
+
+    static addTag(id,tags){
+        let numberId = Number(id)
+        if(id === undefined || tags.length === 0){
+            console.log(`Input the ID and Tags name after tag <id> <name tags>`)
+        }else{
+            Controller.addTag(numberId,tags)
+        }
+    }
+
+    static filterFunction(tag){
+        if(tag === undefined){
+            console.log(`Input the tag after filter <tag>`)
+        }else{
+            Controller.filterFunction(tag)
+        }
+    }
 }
 
 let argv = process.argv.slice(2,process.argv.length)
@@ -84,4 +112,15 @@ switch(true) {
     case(command  === 'uncomplete'):
         Todo.unCompleteFunction(argv[1])
         break;
+    case(command === 'list:created'):
+        Todo.createdSort(argv[1])
+        break;
+    case(command === 'list:completed'):
+        Todo.completeSort(argv[1])
+        break;
+    case(command === 'tag'):
+        Todo.addTag(argv[1],argv.slice(2,argv.length))
+        break;
+    case(command === "filter"):
+        Todo.filterFunction(argv[1])
 }
