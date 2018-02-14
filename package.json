@@ -18,6 +18,7 @@
   "homepage": "https://github.com/platinum-fox-2017/js-todos#readme",
   "dependencies": {
     "chalk": "^2.3.1",
+    "cli-table": "^0.3.1",
     "terminal-table": "0.0.12"
   }
 }

@@ -53,7 +53,7 @@ class Controller {
 
   static findIdNumber(task_by_user){
     let searchID = Model.findByID(task_by_user)
-    return View.findTaskByIndex(searchID)
+    return View.showFilter(searchID)
   }
 
   static deleteTask(task_by_user){

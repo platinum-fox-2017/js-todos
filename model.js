@@ -31,11 +31,12 @@ class Model{
   }
 
   static findByID(task_by_user){
-    let temp = ""
+    let temp = []
     let read = Model.read()
     for(let i = 0;i<read.length;i++){
       if(i+1 == task_by_user){
-        temp+=i+1+'. '+read[i].task
+        read[i].id = i+1
+        temp.push(read[i])
       }
     }
     if(temp === ""){
