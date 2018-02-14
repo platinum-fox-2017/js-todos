@@ -11,9 +11,7 @@ class TodoController {
     if (this.command === 'help' || this.command === '') {
       TodoView.showAllCommand();
     } else if(this.command === 'list') {
-      //jalankan perintah todo
       var list = TodoModel.getTodoList(TodoView.showTodoList);
-      //TodoView.showTodoList(list);
     } else if (this.command === 'add' ) {
       var added = TodoModel.addTodoList(this.flag);
       if(added){
@@ -36,7 +34,12 @@ class TodoController {
     } else if(this.command === 'list:created'){
       var complete = TodoModel.getCompletedTodoList(this.flag,TodoView.showTodoList);
     } else if(this.command === 'tag'){
-      TodoModel.addTag(this.flag,this.arrFlag)
+      TodoModel.addTag(this.flag,this.arrFlag,TodoView.showSuccessAddedTag)
+    } else if(this.command.search('filter') >= 0){
+      var splitCommand = this.command.split(':');
+      var flag = splitCommand[1];
+      this.flag = flag;
+      TodoModel.filterTag(this.flag,TodoView.showTodoList)
     }
   }
 }

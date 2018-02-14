@@ -60,10 +60,45 @@ class TodoModel {
       return false;
     }
   }
-  static addTag(id,tag){
-    
+
+  static addTag(id,tag,callback){
+    fs.readFile('data.json',(err,list)=>{
+        list = JSON.parse(list);
+        for(var i = 0; i < list.length; i++){
+          if(list[i].id == id){
+            if(list[i].tag.length > 0){
+             var oldTag = list[i].tag;
+             for(var j = 0; j < tag.length; j++){
+               if(oldTag.indexOf(tag[j]) < 0){
+                 oldTag.push(tag[j])
+               }
+             }
+             list[i].tag = oldTag;
+            } else {
+              list[i].tag = tag;  
+            }
+            callback(list[i].name,tag);
+          }
+        }
+        list = JSON.stringify(list);
+        fs.writeFile('data.json',list,(err)=>{});
+    });
   }
 
+  static filterTag (flag,callback){
+    fs.readFile('data.json',(err,list)=> {
+      list = JSON.parse(list);
+      var filterList = [];
+      for(var i = 0; i < list.length; i++){
+        for(var j = 0 ; j < list[i].tag.length; j++){
+          if(list[i].tag[j]  === flag){
+            filterList.push(list[i]);
+          }
+        }
+      }
+      callback(filterList);
+    });
+  }
   static currentDate(){
     var today = new Date();
     var dd = today.getDate();

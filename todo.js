@@ -7,7 +7,7 @@ for(var i = 0; i < argv.length; i++){
     var command = argv[i];
   } else if(i == 3 ){
     var flag = argv[i];
-  } else {
+  } else if(i > 3) {
     arrayFlag.push(argv[i])
   }
 }

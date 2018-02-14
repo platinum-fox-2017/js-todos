@@ -17,11 +17,14 @@ class TodoView {
       } else {
         var status = '[ ]';
       }
-      console.log(`${list[i].id}. ${status} ${list[i].name}`);
+      console.log(`${list[i].id}. ${status} ${list[i].name} [${list[i].tag.join(', ')}]`);
     }
   }
   static showSuccessAdded(name){
     console.log(`Added "${name}" to your TODO List`);
+  }
+  static showSuccessAddedTag(name,tag){
+    console.log(`Tagged task "${name}" with tags: ${tag.join(', ')}`);
   }
   static showFailureAdding(){
     console.log('Fail To add TODO List! Check is you add the name?');
