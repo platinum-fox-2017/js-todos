@@ -21,17 +21,7 @@ class TODOControls {
 		if (this.command) {
 			switch (this.command.split(':')[0]) {
 				case 'list': {
-					switch (this.command.split(':')[1]) {
-						case 'created' : {
-							TODOControls.listCreated(this.option);
-							break;
-						}
-						// case 'completed' : {
-						// 	TODOControls.list();
-						// 	break;
-						// }
-						default : TODOControls.list();
-					}
+					TODOControls.list(this.command.split(':')[1], this.option);
 					break;
 				}
 				case 'add' : {
@@ -82,31 +72,39 @@ where <command> is one of:
 			);
 	}
 
-	static list() {
+	static list(option, sort) {
 		TODOModels.readFile(function (dataObj) {
-			TODOViews.showListMessage(dataObj);
-		});
-	}
-
-	static listCreated(option) {
-		TODOModels.readFile(function (dataObj) {
-			TODOControls.sort(dataObj, option);
-			TODOViews.showListMessage(dataObj);
+			switch (option) {
+				case 'created' : TODOControls.sort(dataObj, sort, 'created_date');
+				case 'completed' : {
+					let dataObjCompleted = [];
+					for (let i = 0; i < dataObj.length; i++) {
+						if (dataObj[i].completed_date != '' && dataObj[i].status) dataObjCompleted.push(dataObj[i]);
+					}
+					TODOControls.sort(dataObjCompleted, sort, 'completed_date')
+					TODOViews.showListMessage(dataObjCompleted);
+					break;
+				};
+				default : TODOViews.showListMessage(dataObj);
+			}
 		});
 	}
 
 	static add(data) {
-		TODOModels.readFile(function (dataObj, callback) {
+		TODOModels.readFile(function (dataObj) {
 			let newObj = {
 				id : (Number(dataObj[dataObj.length - 1].id) + 1).toString(),
 				todo : data,
-				status : false
+				status : false,
+				created_date : new Date(),
+				completed_date : '',
+				tag : []
 			};
 
 			dataObj.push(newObj);
-			TODOModels.writeFile(dataObj);
-
-			TODOViews.showMessage(`Added ${dataObj[dataObj.length - 1].todo} to your TODO list...`);
+			TODOModels.writeFile(dataObj, function() {
+				TODOViews.showMessage(`Added ${dataObj[dataObj.length - 1].todo} to your TODO list...`);
+			});
 		});
 	}
 
@@ -121,7 +119,7 @@ where <command> is one of:
 	}
 
 	static delete(id) {
-		TODOModels.readFile(function (dataObj, callback) {
+		TODOModels.readFile(function (dataObj) {
 			let deletedData = '';
 
 			for (let i = 0; i < dataObj.length; i++) {
@@ -138,25 +136,24 @@ where <command> is one of:
 	}
 
 	static complete(id) {
-		TODOModels.readFile(function (dataObj, callback) {
-			let deletedData = '';
-
+		TODOModels.readFile(function (dataObj) {
 			for (let i = 0; i < dataObj.length; i++) {
 				if (dataObj[i].id == id) {
 					dataObj[i].status = true;
+					dataObj[i].completed_date = new Date();
 					break;
 				}
 			}
 
-			TODOModels.writeFile(dataObj);
-			TODOControls.list();
+
+			TODOModels.writeFile(dataObj, function() {
+				TODOControls.list();
+			});
 		});
 	}
 
 	static uncomplete(id) {
-		TODOModels.readFile(function (dataObj, callback) {
-			let deletedData = '';
-
+		TODOModels.readFile(function (dataObj) {
 			for (let i = 0; i < dataObj.length; i++) {
 				if (dataObj[i].id == id) {
 					dataObj[i].status = false;
@@ -164,22 +161,23 @@ where <command> is one of:
 				}
 			}
 
-			TODOModels.writeFile(dataObj);
-			TODOControls.list();
+			TODOModels.writeFile(dataObj, function() {
+				TODOControls.list();
+			});
 		});
 	}
 
-	static sort(data, option) {
+	static sort(data, option, property) {
 		for (let i = 1; i < data.length; i++) {
 			for (let j = 0; j < i; j++) {
 				if (option == 'desc') {
-					if (data[i].created_date > data[j].created_date) {
+					if (data[i][property] > data[j][property]) {
 						let temp = data[i];
 			  			data[i] = data[j];
 			  			data[j] = temp;
 					}
 				} else {
-					if (data[i].created_date < data[j].created_date) {
+					if (data[i][property] < data[j][property]) {
 						let temp = data[i];
 			  			data[i] = data[j];
 			  			data[j] = temp;

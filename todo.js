@@ -12,3 +12,13 @@ if (command == 'add') {
 
 let TODO = new TODOControls({ command: command, option: options});
 TODO.execute();
+
+// var dateTime = require('node-datetime');
+// var dt = dateTime.create();
+// var formatted = dt.format('Y-m-d H:M:S');
+// let date = new Date();
+// let old = new Date('2018-02-14T08:22:08.376Z');
+// if (date < old) console.log(true);
+// console.log(date.toString());
+
+// console.log('abc'.split(':')[1]);

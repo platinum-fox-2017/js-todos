@@ -14,9 +14,10 @@ class TODOModels {
 		});
 	}
 
-	static writeFile(data) {
+	static writeFile(data, callback) {
 		fs.writeFile(path, JSON.stringify(data), (err) => {
 		  if (err) console.log(err);
+		  callback();
 		});
 	}
 }
