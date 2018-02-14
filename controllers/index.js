@@ -23,6 +23,20 @@ class Controllers {
       let id = models.findById(task)
       views.showById(id)
     }
+    else if(command === 'delete'){
+      let id = models.delete(task)
+      views.showDelete(id)
+    }
+    else if(command === 'complete'){
+      models.complete(task)
+      let list = models.list()
+      views.showList(list)
+    }
+    else if(command === 'uncomplete'){
+      models.uncomplete(task)
+      let list = models.list()
+      views.showList(list)
+    }
     else {
       views.showHelp()
     }
