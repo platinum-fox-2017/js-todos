@@ -1,1 +1,1 @@
-[{"id":1,"name":"Bikin Aplikasi","status":0},{"id":2,"name":"Main Node js","status":1}]
+[{"id":1,"name":"Bikin Aplikasi","status":1,"created_date":"01-01-2018","tag":["work","play"]},{"id":2,"name":"Main Node js","status":1,"created_date":"01-02-2018","tag":["work"]},{"id":3,"name":"coba","create_date":"14-02-2018","status":1},{"id":4,"name":"cobanambah","status":0,"create_date":"14-02-2018","tag":[]},{"id":5,"name":"haha","status":0,"create_date":"14-02-2018","tag":[]}]

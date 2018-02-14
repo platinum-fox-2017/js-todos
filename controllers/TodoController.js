@@ -1,19 +1,19 @@
-
 const TodoView = require('../views/TodoView.js');
 const TodoModel = require('../models/TodoModel.js');
 
 class TodoController {
-  constructor(command,flag) {
+  constructor(command,flag,arrFlag) {
    this.command = command || ''; 
    this.flag = flag || ''; 
+   this.arrFlag = arrFlag || []; 
   }
   runCommand(){
     if (this.command === 'help' || this.command === '') {
       TodoView.showAllCommand();
     } else if(this.command === 'list') {
       //jalankan perintah todo
-      var list = TodoModel.getTodoList();
-      TodoView.showTodoList(list);
+      var list = TodoModel.getTodoList(TodoView.showTodoList);
+      //TodoView.showTodoList(list);
     } else if (this.command === 'add' ) {
       var added = TodoModel.addTodoList(this.flag);
       if(added){
@@ -22,36 +22,21 @@ class TodoController {
         TodoView.showFailureAdding();
       }
     } else if(this.command === 'findById'){
-      let findById = TodoModel.findById(this.flag);
-      if(findById != ''){
-        TodoView.showFindById(this.flag, findById);
-      } else {
-        TodoView.failToFind(this.flag);
-      }
+      let findById = TodoModel.findById(this.flag,TodoView.showFindById);
     } else if(this.command === 'delete'){
-      var name = TodoModel.findById(this.flag);
-      var deleted = TodoModel.delete(this.flag);
-      if(deleted){
-        TodoView.showSuccessDeleted(name);
-      } else {
-        TodoView.showFailToDelete();
-      }
+      var deleted = TodoModel.delete(this.flag,TodoView.showSuccessDeleted);
     } else if(this.command === 'complete'){
-      var complete = TodoModel.complete(this.flag);
-      if(complete){
-        var list = TodoModel.getTodoList();
-        TodoView.showTodoList(list);
-      } else {
-        TodoView.failToComplete();
-      }
+      TodoModel.complete(this.flag);
+      TodoModel.getTodoList(TodoView.showTodoList);
     } else if(this.command === 'uncomplete'){
-      var complete = TodoModel.uncomplete(this.flag);
-      if(complete){
-        var list = TodoModel.getTodoList();
-        TodoView.showTodoList(list);
-      } else {
-        TodoView.failToUnComplete();
-      }
+      TodoModel.uncomplete(this.flag);
+      TodoModel.getTodoList(TodoView.showTodoList);
+    } else if(this.command === 'list:completed'){
+      var complete = TodoModel.getCompletedTodoList(this.flag,TodoView.showTodoList);
+    } else if(this.command === 'list:created'){
+      var complete = TodoModel.getCompletedTodoList(this.flag,TodoView.showTodoList);
+    } else if(this.command === 'tag'){
+      TodoModel.addTag(this.flag,this.arrFlag)
     }
   }
 }

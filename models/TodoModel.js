@@ -1,50 +1,115 @@
 const fs = require('fs');
 
 class TodoModel {
-  constructor() {
+  static getTodoList(callback){
+     fs.readFile('data.json',(err,list) => {
+        list = JSON.parse(list);
+        callback(list);
+      });
   }
-  static getTodoList(){
-    var list = fs.readFileSync('data.json','utf8');
-    list = JSON.parse(list);
-    //return object of list
-    return list;
-  }
-  static addTodoList(name){
-    if (name != '') {
-      var list = fs.readFileSync('data.json','utf8');
+  static getCompletedTodoList(sort,callback){
+    fs.readFile('data.json',(err,list)=> {
       list = JSON.parse(list);
-      var lastIid = Number(list[list.length - 1].id) + 1;
-      var todo = {id: lastIid,name: name};
-      list.push(todo);
-      list = JSON.stringify(list);
-      fs.writeFileSync('data.json',list);
+      var completedTodo = [];
+      if(sort === 'asc'){
+        for (var i = 0;  i < list.length; i++) {
+          if(list[i].status === 1){
+            completedTodo.push(list[i]);
+          }
+        }
+      } else {
+        for (var i = list.length - 1;  i > 0; i--) {
+          if(list[i].status === 1){
+            completedTodo.push(list[i]);
+          }
+        }
+      }
+      callback(completedTodo);
+    });
+  }
+  static getTodoListOrderByCreateDate(sort,callback){
+    fs.readFile('data.json',(err,data) => {
+        var list = data;
+        list = JSON.parse(list);
+        var todoOrderByCreateDate = [];
+        if(sort === 'asc'){
+          for (var i = 0;  i < list.length; i++) {
+              todoOrderByCreateDate.push(list[i]);
+          }
+        } else {
+          for (var i = list.length - 1;  i > 0; i--) {
+              todoOrderByCreateDate.push(list[i]);
+          }
+        }
+        callback(getTodoListOrderByCreateDate)
+      });
+    }
+    static addTodoList(name){
+    if (name != '') {
+      fs.readFile('data.json',(err,list)=>{
+        list = JSON.parse(list);
+        var lastIid = Number(list[list.length - 1].id) + 1;
+        var currentDate = TodoModel.currentDate();
+        var todo = {id: lastIid,name: name,status: 0,create_date: currentDate,tag: []};
+        list.push(todo);
+        list = JSON.stringify(list);
+        fs.writeFile('data.json',list,(err)=>{});
+      });
       return true;
     } else {
       return false;
     }
   }
-  static findById(id){
-    var list = fs.readFileSync('data.json','utf8');
-    list = JSON.parse(list);
-    for(var i = 0; i < list.length; i++){
-      if(list[i].id == id){
-        return list[i].name;
-      }
-    }
-    return '';
+  static addTag(id,tag){
+    
   }
-  static delete(id){
-    if (id != '') {
-      var list = fs.readFileSync('data.json','utf8');
+
+  static currentDate(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    }
+
+    if(mm<10) {
+        mm = '0'+mm
+    }
+
+    today = dd + '-' + mm + '-' + yyyy;
+    return today;
+  }
+
+  static findById(id,callback){
+    fs.readFile('data.json',(err,list) => {
       list = JSON.parse(list);
-      var listBaru = [];
       for(var i = 0; i < list.length; i++){
-        if(list[i].id != id){
-          listBaru.push(list[i]);
+        if(list[i].id == id){
+          callback(id,list[i].name);
+          break;
         }
       }
-      listBaru = JSON.stringify(listBaru);
-      fs.writeFileSync('data.json',listBaru);
+    });
+  }
+
+  static delete(id,callback){
+    if (id != '') {
+      fs.readFile('data.json',(err,list) => {
+        list = JSON.parse(list);
+        var listBaru = [];
+        for(var i = 0; i < list.length; i++){
+          if(list[i].id != id){
+            listBaru.push(list[i]);
+          } else {
+            var nama = list[i].name;
+          }
+        }
+        listBaru = JSON.stringify(listBaru);
+        fs.writeFile('data.json',listBaru,(err)=>{});
+        callback(nama);
+      });
       return true;
     } else {
       return false;
@@ -52,15 +117,16 @@ class TodoModel {
   }
   static complete(id){
     if (id != '') {
-      var list = fs.readFileSync('data.json','utf8');
-      list = JSON.parse(list);
-      for(var i = 0; i < list.length; i++){
-        if(list[i].id == id){
-          list[i].status = 1;
+      fs.readFile('data.json',(err,list)=>{
+        list = JSON.parse(list);
+        for(var i = 0; i < list.length; i++){
+          if(list[i].id == id){
+            list[i].status = 1;
+          }
         }
-      }
-      list = JSON.stringify(list);
-      fs.writeFileSync('data.json',list);
+        list = JSON.stringify(list);
+        fs.writeFile('data.json',list,(err)=>{});
+      });
       return true;
     } else {
       return false;
@@ -68,15 +134,16 @@ class TodoModel {
   }
   static uncomplete(id){
     if (id != '') {
-      var list = fs.readFileSync('data.json','utf8');
-      list = JSON.parse(list);
-      for(var i = 0; i < list.length; i++){
-        if(list[i].id == id){
-          list[i].status = 0;
+      fs.readFile('data.json',(err,list)=>{
+        list = JSON.parse(list);
+        for(var i = 0; i < list.length; i++){
+          if(list[i].id == id){
+            list[i].status = 0;
+          }
         }
-      }
-      list = JSON.stringify(list);
-      fs.writeFileSync('data.json',list);
+        list = JSON.stringify(list);
+        fs.writeFile('data.json',list,(err)=>{});
+      });
       return true;
     } else {
       return false;

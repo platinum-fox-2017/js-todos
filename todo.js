@@ -1,8 +1,15 @@
 
 const TodoController = require('./controllers/TodoController.js');
 const argv = process.argv;
-
-const command = argv[2];
-const flag = argv[3];
-const todo = new TodoController(command,flag);
+var arrayFlag = [];
+for(var i = 0; i < argv.length; i++){
+  if(i == 2 ){
+    var command = argv[i];
+  } else if(i == 3 ){
+    var flag = argv[i];
+  } else {
+    arrayFlag.push(argv[i])
+  }
+}
+const todo = new TodoController(command,flag,arrayFlag);
 todo.runCommand();
