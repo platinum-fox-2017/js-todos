@@ -16,6 +16,7 @@ switch(true){
     Controller.add_to_do(value);
     break;
     case(command === 'find_by_id'):
+    Controller.find_by_id(value);
     break;
     case(command === 'delete'):
     break;

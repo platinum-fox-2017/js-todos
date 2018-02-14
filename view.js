@@ -22,5 +22,8 @@ class View {
         console.log(`Added ${new_task} to your to-do list`)
         console.log('=========================================================');
     }
+    static find_by_id(data){
+        console.log(data);
+    }
 }
 module.exports = View;
