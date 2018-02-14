@@ -10,7 +10,7 @@ if(process.argv[2].indexOf('filter') === 0){
   task_by_user = process.argv.splice(3).join(' ')
 }
 
-console.log(input);
+// console.log(input);
 
 
 Controller.toDo(input,task_by_user)

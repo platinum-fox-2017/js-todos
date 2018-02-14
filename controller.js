@@ -103,7 +103,7 @@ class Controller {
 
   static filter(task_by_user){
     let filter = Model.filter(task_by_user)
-    return View.showList(filter)
+    return View.showFilter(filter)
   }
 
 }

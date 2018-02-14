@@ -35,7 +35,7 @@ class Model{
     let read = Model.read()
     for(let i = 0;i<read.length;i++){
       if(i+1 == task_by_user){
-        temp+=read[i].id+'. '+read[i].task
+        temp+=i+1+'. '+read[i].task
       }
     }
     if(temp === ""){
@@ -139,7 +139,7 @@ class Model{
     let read = Model.read()
     for(let i = 0;i<read.length;i++){
       if(i+1 == temp[0]){
-        read[i].tag = temp.splice(1)
+        read[i].tag.push(temp.splice(1).join(''))
       }
     }
     fs.writeFileSync('./data.json',JSON.stringify(read))
@@ -164,6 +164,7 @@ class Model{
     for(let i = 0;i<read.length;i++){
       for(let j = 0;j<read[i].tag.length;j++){
         if(read[i].tag[j] === task_by_user){
+          read[i].id = i+1
           temp.push(read[i])
         }
       }

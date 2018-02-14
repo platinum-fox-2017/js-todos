@@ -24,7 +24,6 @@ class View{
 
   static showList(detailList){
     for(let i = 0;i<detailList.length;i++){
-      // console.log(detailList.tag.length);
       if(detailList[i].tag.length == 0){
         console.log(i+1+'. '+detailList[i].status+' '+detailList[i].task)
       } else {
@@ -33,11 +32,18 @@ class View{
     }
   }
 
+  static showFilter(detailList){
+    for(let i = 0;i<detailList.length;i++){
+      console.log(detailList[i].id+'. '+detailList[i].status+' '+detailList[i].task+' tag: '+detailList[i].tag);
+    }
+  }
+
+
   static showAddedTask(task_by_user){
     console.log("Added " + task_by_user + " to your TODO list...")
   }
 
-  static findTaskByIndex(searchID,err){
+  static findTaskByIndex(searchID){
     console.log(searchID)
   }
 
