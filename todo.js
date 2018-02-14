@@ -10,6 +10,7 @@ switch(true){
     Controller.show_help();
     break;
     case(command === 'list'):
+    Controller.show_to_do_list();
     break;
     case(command === 'add'):
     break;
