@@ -38,6 +38,32 @@ class Todo {
         TodoModel.uncompleteById(id)
         this.showList()
     }
+
+    static listCreated(command) {
+        TodoModel.listCreated(command)
+        this.showList()
+    }
+
+    static listCompleted(command) {
+        TodoModel.listCompleted(command)
+        this.showList()
+    }
+
+    static listOutstanding(command) {
+        let outstanding = TodoModel.listOutstanding(command)
+        TodoView.printList(outstanding)
+    }
+
+    static addTag(command) {
+        let id = [command[0]]
+        TodoModel.addTag(command)
+        let findTask = TodoModel.findById(id)
+        TodoView.printAddedtag(findTask)
+    }
+
+    static filter(tag) {
+        TodoModel.filter(tag)
+    }
 }
 
 module.exports = Todo

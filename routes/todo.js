@@ -32,6 +32,21 @@ class Todo {
             case 'uncomplete':
                 TodoController.uncompleteById(this.dataCommand)
                 break
+            case 'list:created':
+                TodoController.listCreated(this.dataCommand)
+                break
+            case 'list:completed':
+                TodoController.listCompleted(this.dataCommand)
+                break
+            case 'list:outstanding':
+                TodoController.listOutstanding(this.dataCommand)
+                break
+            case 'tag':
+                TodoController.addTag(this.dataCommand)
+                break
+            case 'filter:':
+                TodoController.filter(this.dataCommand)
+                break
         }
     }
 }
