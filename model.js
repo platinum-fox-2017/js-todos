@@ -3,27 +3,37 @@ const fs = require('fs')
 class DataProcess {
   constructor(input) {
     this.argv = input
-    this.commands = this.parseCommand()
+    // this.commands = this.parseCommand()
     this.add_message = ''
+    this.id_look = 0
+    this.id_delete = ''
   }
 
-  parseCommand() {
-    return this.argv.slice(2)
-  }
+  // parseCommand() {
+  //   return this.argv.slice(2)
+  // }
 
-  readCommand() {
-    for (let i = 0; i < this.commands.length; i++) {
-      if(this.commands[i] === 'help' || this.commands[i] === 'helpme') {
-        return 'help'
-      } else if (this.commands[i] === 'list') {
-        return 'list'
-      } else if (this.commands[i] === 'add') {
-        this.add_message = this.commands[i+1]
-        // console.log(this.add_message);
-        return 'add'
-      }
-    }
-  }
+  // readCommand() {
+  //   for (let i = 0; i < this.commands.length; i++) {
+  //     if(this.commands[i] === 'help' || this.commands[i] === 'helpme') {
+  //       console.log('test');
+  //       return 'help'
+  //     } else if (this.commands[i] === 'list') {
+  //       return 'list'
+  //     } else if (this.commands[i] === 'add') {
+  //       this.add_message = this.commands[i+1]
+  //       return 'add'
+  //     } else if (this.commands[i] === 'findById') {
+  //       this.id_look = this.commands[i+1]
+  //       return 'findById'
+  //     } else if (this.commands[i] === 'delete') {
+  //       this.id_delete = this.commands[i+1]
+  //       console.log(this.commands);
+  //       // this.deleteDataJSON(this.id_delete)
+  //       return 'delete'
+  //     }
+  //   }
+  // }
 
 
   readDataJSON(callback) {
@@ -48,27 +58,34 @@ class DataProcess {
   //   })
   // }
 
+  deleteDataJSON(id) {
+    console.log(id);
+    this.readDataJSON(function(err,data){
+      let array = JSON.parse(data)
+
+      // array.splice(id-1,1)
+      console.log(array)
+
+    })
+  }
+
   addDataJSON(message) {
     let messageParsed ={task: message}
+    // console.log(messageParsed);
     this.readDataJSON(function(err, data){
       let array = JSON.parse(data)
       array.push(messageParsed)
       let jsonData = JSON.stringify(array)
-      // console.log(jsonData);
 
       fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {
         if (err) {
           console.log(err);
         } else {
           console.log('message saved');
-          // callback(null, 'message saved')
         }
       })
-
     })
-
   }
-
 }
 
 module.exports = {

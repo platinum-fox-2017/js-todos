@@ -13,17 +13,31 @@ class View {
   }
 
   readDataJSON(callback) {
-    fs.readFile('./data.json', 'utf-8', function(err, data){
-      if(err){
-        console.log(err);
-      } else {
-        let array = JSON.parse(data)
-        for (let i = 0; i < array.length; i++) {
-          console.log(`${i+1}. ${array[i].task}`);
+    fs.readFile('./data.json', 'utf-8', function (err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          callback(null, data)
         }
-      }
 
-    });
+    })
+  }
+
+  findByIdJSON(id) {
+    // this.id_look
+    this.readDataJSON(function(err, data){
+      let array = JSON.parse(data)
+      console.log(`${id}. ${array[id-1].task}`);
+    })
+  }
+
+  displayDataJSON(callback) {
+    this.readDataJSON(function(err, data){
+      let array = JSON.parse(data)
+      for (let i = 0; i < array.length; i++) {
+        console.log(`${i+1}. ${array[i].task}`);
+      }
+    })
   }
 }
 
