@@ -43,20 +43,10 @@ class DataProcess {
         } else {
           callback(null, data)
         }
-
     })
   }
 
-  // writeFileJSON(newData, callback){
-  //   // Callback area
-  //   fs.writeFile('./data.json', newData, 'utf-8', function(err) {
-  //     if (err) {
-  //       callback(err, null)
-  //     } else {
-  //       callback(null, 'message saved')
-  //     }
-  //   })
-  // }
+
 
   deleteDataJSON(id) {
     console.log(id);
@@ -156,6 +146,33 @@ class DataProcess {
       })
     })
   }
+
+  tagDataJSON(argv) {
+    this.readDataJSON(function(err, data){
+      let id = argv[3]
+      let tags = argv.slice(4)
+      // console.log(id, tags);
+      let array = JSON.parse(data)
+      for (let i = 0; i < array.length; i++) {
+        if(array[i].tag === undefined) {
+          array[i].tag = []
+        }
+        if (id-1 === i) {
+          array[i].tag = tags
+        }
+      }
+      let jsonData = JSON.stringify(array)
+
+      fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('message saved');
+        }
+      })
+    })
+  }
+
 }
 
 module.exports = {

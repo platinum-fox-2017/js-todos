@@ -6,16 +6,10 @@ const DataProcess = model.DataProcess
 const ViewProcess = view.View
 let argv = todo.argv
 
-
 class Controller {
   constructor(input) {
     this.argv = input
-    // this.commands = this.parseCommand()
   }
-
-  // parseCommand() {
-  //   return this.argv.slice(2)
-  // }
 
   readCommand(argv) {
     let view_process = new ViewProcess()
@@ -38,37 +32,20 @@ class Controller {
       case 'list:completed': data_process.readDataJSON(function(err, data){
         view_process.displaySortCheckJSON(argv[2+1], err, data)
         }); break;
-      case 'help': view_process.displayHelp(); break;
-      case 'help': view_process.displayHelp(); break;
+      case 'tag': data_process.tagDataJSON(argv);
+        // view_process.displayTagInfo(argv)
+        break;
+      case 'filter': data_process.readDataJSON(function(err, data){
+        view_process.displaySortFilterJSON(argv[2+1], err, data);
+        }); break;
+      // filter:<tagName>
+
       default : console.log('error');
     }
   }
 
-  // static readCommandNew(argv) {
-  //
-  //   switch(argv[2]) {
-  //     case 'help': view_process.displayHelp(); break;
-  //     case 'list':
-  //       data_process.readDataJSON(function(err, data){
-  //         view
-  //       });
-  //       break;
-  //     case 'add': data_process.addDataJSON(this.commands[0+1]); break;
-  //     case 'findById': view_process.findByIdJSON(this.commands[0+1]); break;
-  //     case 'delete': data_process.deleteDataJSON(this.commands[0+1]); break;
-  //     case 'complete': data_process.completeDataJSON(this.commands[i+1]); break;
-  //     case 'uncomplete': data_process.uncompleteDataJSON(this.commands[0+1]); break;
-  //     case 'list:created': view_process.displaySortCreatedJSON(this.commands[0+1]); break;
-  //     case 'list:completed': view_process.displayHelp(); break;
-  //     case 'help': view_process.displayHelp(); break;
-  //     case 'help': view_process.displayHelp(); break;
-  //     default : console.log('error');
-  //   }
-  // }
-
 }
 
-// let controller = new Controller()
 
 module.exports = {
   Controller : Controller

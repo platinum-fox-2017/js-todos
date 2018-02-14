@@ -66,8 +66,6 @@ class View {
   }
 
   displaySortCheckJSON(sortDirection, err, data) {
-    // this.readDataJSON(function(err, data){
-    // })
     let array = JSON.parse(data)
     let arrayChecked = []
     let arrayNotChecked = []
@@ -84,7 +82,7 @@ class View {
       })
     } else if (sortDirection === 'asc' || sortDirection === undefined) {
       arrayChecked.sort(function(a, b){
-        return new Date(a.created).getTime() - new Date(b.created).getTime()
+        return new Date(a.completedDate).getTime() - new Date(b.completedDate).getTime()
       })
     }
     let sortedArray = arrayChecked.concat(arrayNotChecked)
@@ -93,6 +91,37 @@ class View {
     }
   }
 
+  displayTagInfo(argv) {
+    let id = argv[3]
+    let tags = argv.slice(4)
+  }
+
+  displaySortFilterJSON(sortDirection, err, data) {
+    let array = JSON.parse(data)
+    let arrayTag = []
+    let arrayNotTag = []
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].tag !== []) {
+        arrayTag.push(array[i])
+      } else {
+        arrayNotTag.push(array[i])
+      }
+    }
+    if (sortDirection === 'desc') {
+      arrayTag.sort(function(a, b){
+        return new Date(b.created).getTime() - new Date(a.created).getTime()
+      })
+    } else if (sortDirection === 'asc' || sortDirection === undefined) {
+      arrayTag.sort(function(a, b){
+        return new Date(a.created).getTime() - new Date(b.created).getTime()
+      })
+    }
+    
+    let sortedArray = arrayTag.concat(arrayNotTag)
+    for (let i = 0; i < sortedArray.length; i++) {
+      console.log(`${i+1}. [${sortedArray[i].check}] ${sortedArray[i].task} completed at: ${sortedArray[i].completedDate}`);
+    }
+  }
 
 }
 
