@@ -1,8 +1,9 @@
 const TodoController = require('../controllers/todo')
 
 class Todo {
-    constructor(command) {
+    constructor(command, dataCommand) {
         this.command = command
+        this.dataCommand = dataCommand
     }
 
     start() {
@@ -17,6 +18,7 @@ class Todo {
                 TodoController.showList()
                 break
             case 'add':
+                TodoController.addTodo(this.dataCommand)
                 break
             case 'findById':
                 break

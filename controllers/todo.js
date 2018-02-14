@@ -12,6 +12,11 @@ class Todo {
         let list = TodoModel.list()
         TodoView.printList(list)
     }
+
+    static addTodo(task) {
+        TodoModel.addTodo(task)
+        TodoView.printAddedTodo(task)
+    }
 }
 
 module.exports = Todo

@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 class Todo {
     static printHelp() {
         console.log(`$ node todo.js help`)
@@ -17,6 +19,10 @@ $ node todo.js uncomplete <task_id> # Menandai status TODO belum selesai`
         for (var key in list) {
             console.log(`${list[key].id}. ${list[key].task}`)
         }
+    }
+
+    static printAddedTodo(task) {
+        console.log(chalk.green(`Added "${task.join(' ')}" to your TODO list...`));
     }
 }
 
