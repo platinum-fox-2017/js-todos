@@ -1,7 +1,7 @@
 class TODOViews {
 	static showListMessage(dataObj) {
 		for (let i = 0; i < dataObj.length; i++) {
-			TODOViews.showMessage(`${dataObj[i].id}. [${dataObj[i].status ? 'x' : ' '}] ${dataObj[i].todo}`);
+			TODOViews.showMessage(`${dataObj[i].id}. [${dataObj[i].status ? 'x' : ' '}] ${dataObj[i].todo} [${dataObj[i].tag.join(' ')}]`);
 		}
 	}
 

@@ -48,6 +48,10 @@ class TODOControls {
 					TODOControls.tag(this.option);
 					break;
 				}
+				case 'filter' : {
+					TODOControls.filter(this.command.split(':')[1]);
+					break;
+				}
 				default : 
 				console.log(
 		`Usage: node "JS Todos.js" <command>
@@ -79,7 +83,11 @@ where <command> is one of:
 	static list(option, sort) {
 		TODOModels.readFile(function (dataObj) {
 			switch (option) {
-				case 'created' : TODOControls.sort(dataObj, sort, 'created_date');
+				case 'created' : {
+					TODOControls.sort(dataObj, sort, 'created_date');
+					TODOViews.showListMessage(dataObj);
+					break;
+				}
 				case 'completed' : {
 					let dataObjCompleted = [];
 					for (let i = 0; i < dataObj.length; i++) {
@@ -88,7 +96,7 @@ where <command> is one of:
 					TODOControls.sort(dataObjCompleted, sort, 'completed_date')
 					TODOViews.showListMessage(dataObjCompleted);
 					break;
-				};
+				}
 				default : TODOViews.showListMessage(dataObj);
 			}
 		});
@@ -134,8 +142,9 @@ where <command> is one of:
 				}
 			}
 
-			TODOModels.writeFile(dataObj);
-			TODOViews.showMessage(`deleted ${deletedData} from your TODO list...`);
+			TODOModels.writeFile(dataObj, function() {
+				TODOViews.showMessage(`deleted ${deletedData} from your TODO list...`);
+			});
 		});
 	}
 
@@ -195,6 +204,24 @@ where <command> is one of:
 			TODOModels.writeFile(dataObj, function() {
 				TODOViews.showMessage(`Tagged task "${name_task}" with tags: ${tags.join(' ')}`);
 			});
+		});
+	}
+
+	static filter(option) {
+		TODOModels.readFile(function (dataObj) {
+			let result = [];
+
+			for (let i = 0; i < dataObj.length; i++) {
+				for (let j = 0; j < dataObj[i].tag.length; j++) {
+
+					if (dataObj[i].tag[j] == option) {
+						result.push(dataObj[i]);
+						break;
+					}
+				}
+			}
+
+			TODOViews.showListMessage(result);
 		});
 	}
 
