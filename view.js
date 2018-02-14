@@ -17,22 +17,10 @@ class View {
       if(err){
         console.log(err);
       } else {
-        var dataArr = data.split('\r\n')
-        for (let i = 0; i < dataArr.length; i++) {
-          dataArr[i]= dataArr[i].trim()
+        let array = JSON.parse(data)
+        for (let i = 0; i < array.length; i++) {
+          console.log(`${i+1}. ${array[i].task}`);
         }
-        dataArr.shift()
-        dataArr.pop()
-        if (dataArr[dataArr.length-1] === ']') {
-          dataArr.pop()
-        }
-        for (let i = 0; i < dataArr.length; i++) {
-          dataArr[i] = dataArr[i].substr(8).trim()
-          dataArr[i] = dataArr[i].substr(1,dataArr[i].length-3)
-          dataArr[i] = `${i+1}. ${dataArr[i]}`
-          console.log(dataArr[i]);
-        }
-        // console.log(dataArr)
       }
 
     });
