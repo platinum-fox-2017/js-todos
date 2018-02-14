@@ -9,6 +9,8 @@ let view_process = new view.View()
 // console.log(data_process.commands);
 if (data_process.readCommand() === 'help') {
   view_process.displayHelp()
+} else if (data_process.readCommand() === 'list') {
+  view_process.readDataJSON()
 }
 
 
