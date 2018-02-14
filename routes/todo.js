@@ -11,9 +11,10 @@ class Todo {
                 TodoController.showHelp()
                 break
             case 'help':
-                console.log('help me')
+                TodoController.showCommand()
                 break
             case 'list':
+                TodoController.showList()
                 break
             case 'add':
                 break
