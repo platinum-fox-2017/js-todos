@@ -1,1 +1,1 @@
-[ {"id":1,"task": "Bikin aplikasi"},{"id":2,"task": "Main Node.js"}]
+[{"task":"Bikin aplikasi","status":"uncomplete"},{"task":"Main Node js","status":"uncomplete"},{"task":"matikan lampunya","status":"uncomplete"},{"task":"nyalakan TV","status":"complete"}]
