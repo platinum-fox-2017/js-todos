@@ -21,12 +21,16 @@ class Todo {
                 TodoController.addTodo(this.dataCommand)
                 break
             case 'findById':
+                TodoController.findById(this.dataCommand)
                 break
             case 'delete':
+                TodoController.deleteById(this.dataCommand)
                 break
             case 'complete':
+                TodoController.completeById(this.dataCommand)
                 break
             case 'uncomplete':
+                TodoController.uncompleteById(this.dataCommand)
                 break
         }
     }

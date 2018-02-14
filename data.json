@@ -1,1 +1,1 @@
-[{"id":"1","task":"olahraga"},{"id":"2","task":"Ngoding"},{"id":3,"task":"makan nasi"},{"id":4,"task":"makan nasi"},{"id":5,"task":"makan nasi"},{"id":6,"task":"makan nasi"},{"id":7,"task":"makan nasi"}]
+[{"id":"1","task":"makan bubur","is_complete":true},{"id":"2","task":"makan mie","is_complete":true},{"id":"3","task":"makan nasi","is_complete":false}]
