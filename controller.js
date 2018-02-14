@@ -38,7 +38,26 @@ class Controller{
 			let uncomplete = Model.uncompletedTodo(input2)
 			View.showList(uncomplete)
 		}
+		else if(inputTodo === 'list:created'){
+			let sort = Model.sortCreated(input2)
+			View.showList(sort)
+
+		}
+		else if(inputTodo === 'list:completed'){
+			let completeTodo = Model.completedList(input2)
+			View.showList(completeTodo)
+
+		}
+		else if(inputTodo === 'tag'){
+			let inputTag = Model.addTag(input2)
+			View.showAddedTag(inputTag,input2)
+		}
+		else if(inputTodo === 'filter'){
+			let filtered = Model.filterTag(input2)
+			View.showFilterTag(filtered)
+		}
 	}
+
 
 }
 
