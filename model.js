@@ -62,9 +62,18 @@ class DataProcess {
     console.log(id);
     this.readDataJSON(function(err,data){
       let array = JSON.parse(data)
+      let deletedData = array[id-1]
+      console.log(`Deleted ${deletedData.task} from your TODO kist....`);
+      array.splice(id-1,1)
+      let jsonData = JSON.stringify(array)
 
-      // array.splice(id-1,1)
-      console.log(array)
+      fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+
+        }
+      })
 
     })
   }
@@ -75,6 +84,57 @@ class DataProcess {
     this.readDataJSON(function(err, data){
       let array = JSON.parse(data)
       array.push(messageParsed)
+      for (let i = 0; i < array.length; i++) {
+        if(array[i].check === undefined) {
+          array[i].check = ' '
+        }
+      }
+      let jsonData = JSON.stringify(array)
+
+      fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('message saved');
+        }
+      })
+    })
+  }
+
+  completeDataJSON(id) {
+    this.readDataJSON(function(err, data){
+      let array = JSON.parse(data)
+      for (let i = 0; i < array.length; i++) {
+        if(array[i].check === undefined) {
+          array[i].check = ' '
+        }
+        if (id-1 === i) {
+          array[i].check = 'X'
+        }
+      }
+      let jsonData = JSON.stringify(array)
+
+      fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('message saved');
+        }
+      })
+    })
+  }
+
+  uncompleteDataJSON(id) {
+    this.readDataJSON(function(err, data){
+      let array = JSON.parse(data)
+      for (let i = 0; i < array.length; i++) {
+        if(array[i].check === undefined) {
+          array[i].check = ' '
+        }
+        if (id-1 === i) {
+          array[i].check = ' '
+        }
+      }
       let jsonData = JSON.stringify(array)
 
       fs.writeFile('./data.json', jsonData, 'utf-8', function(err) {

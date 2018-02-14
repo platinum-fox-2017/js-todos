@@ -21,25 +21,29 @@ class Controller {
 
   readCommand() {
     for (let i = 0; i < this.commands.length; i++) {
-      if(this.commands[i] === 'help' || this.commands[i] === 'helpme') {
+      if(this.commands[i] === 'help' || this.commands[2] === 'helpme') {
         view_process.displayHelp()
-        // return 'help'
+        return this
       } else if (this.commands[i] === 'list') {
         view_process.displayDataJSON()
-        // return 'list'
+        return this
       } else if (this.commands[i] === 'add') {
         this.add_message = this.commands[i+1]
         /////////////////////////////
         data_process.addDataJSON(this.add_message)
-        // return 'add'
+        return this
       } else if (this.commands[i] === 'findById') {
         this.id_look = this.commands[i+1]
         view_process.findByIdJSON(this.id_look)
-        // return 'findById'
+        return this
       } else if (this.commands[i] === 'delete') {
         this.id_delete = this.commands[i+1]
-        this.deleteDataJSON(this.id_delete)
-        // return 'delete'
+        data_process.deleteDataJSON(this.id_delete)
+        return this
+      } else if (this.commands[i] === 'complete') {
+        data_process.completeDataJSON(this.commands[i+1])
+      } else if (this.commands[i] === 'uncomplete') {
+        data_process.uncompleteDataJSON(this.commands[i+1])
       }
     }
   }

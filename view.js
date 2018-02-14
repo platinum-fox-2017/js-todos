@@ -35,7 +35,13 @@ class View {
     this.readDataJSON(function(err, data){
       let array = JSON.parse(data)
       for (let i = 0; i < array.length; i++) {
-        console.log(`${i+1}. ${array[i].task}`);
+        if(array[i].check === undefined) {
+          array[i].check = ' '
+        }
+      }
+      console.log(array);
+      for (let i = 0; i < array.length; i++) {
+        console.log(`${i+1}. [${array[i].check}] ${array[i].task}`);
       }
     })
   }
