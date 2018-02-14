@@ -26,7 +26,8 @@ class Model{
             "id": previousData.length + 1,
             "task" : dataJoin,
             "status" :false,
-            "created": new Date()
+            "created": new Date(),
+            "tags": []
         }
 
         previousData.push(newData)
