@@ -1,1 +1,1 @@
-[]
+[{"task":"jajan","status":true,"created_date":"2018-02-14T09:45:32.740Z","completed_date":"2018-02-14T12:30:58.287Z","tag":["hobby"]},{"task":"makan","status":true,"created_date":"2018-02-14T09:56:22.853Z","completed_date":"2018-02-14T09:57:42.313Z","tag":["routine"]},{"task":"tidur","status":false,"created_date":"2018-02-14T09:56:27.715Z","completed_date":false,"tag":["routine","hobby"]},{"task":"nyuci","status":false,"created_date":"2018-02-14T12:31:42.322Z","completed_date":false,"tag":[]}]
