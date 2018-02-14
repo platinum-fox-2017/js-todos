@@ -1,11 +1,19 @@
 const chalk = require('chalk');
-
-
+var Table = require('cli-table-redemption');
+// var table = new Table({
+//     head: ['No', 'Status', 'Task'],
+//     colWidths: [10, 10, 50]
+// });
+var table = new Table({
+    head: ['No', 'Status', 'Task'],
+    colWidths: [10, 10, 30]
+});
 
 class View {
   constructor() {
 
   }
+
   static doNothing() {
     console.log(chalk.blue('Unknown command! please type `node todo.js help` for more information'));
   }
@@ -20,12 +28,14 @@ class View {
   }
 
   static showList(data_from_cont) {
+
+
     let beautify = ''
     for (var i = 0; i < data_from_cont.length; i++) {
-      // console.log(data_from_cont[i].task);
-      beautify = `${i+1}. ${data_from_cont[i].status} ${data_from_cont[i].task}`
-      console.log(beautify);
+      // beautify = `${i+1}. ${data_from_cont[i].status} ${data_from_cont[i].task}`
+      table.push([i+1, data_from_cont[i].status, data_from_cont[i].task]);
     }
+    console.log(table.toString());
   }
 
   static showAdd(data_from_cont){
