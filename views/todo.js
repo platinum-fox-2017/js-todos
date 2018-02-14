@@ -42,6 +42,12 @@ $ node todo.js list:created asc|desc`
     static printAddedtag(task) {
         console.log(`Tagged task "${task.task}" with tags: ${task.tag.join(' ')} `);
     }
+
+    static printFilter(list) {
+        for (const key in list) {
+            console.log(`${list[key].id}. ${list[key].task} [${list[key].tag}]`);
+        }
+    }
 }
 
 module.exports = Todo

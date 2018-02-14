@@ -175,8 +175,17 @@ class Todo {
     }
 
     static filter(tag) {
-        console.log(tag);
-
+        let stringTag = tag.join('')
+        let data = this.readFile()
+        let result = []
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[i].tag.length; j++) {
+                if (stringTag === data[i].tag[j]) {
+                    result.push(data[i])
+                }
+            }
+        }
+        return result
     }
 }
 

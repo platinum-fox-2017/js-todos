@@ -62,7 +62,8 @@ class Todo {
     }
 
     static filter(tag) {
-        TodoModel.filter(tag)
+        let result = TodoModel.filter(tag)
+        TodoView.printFilter(result)
     }
 }
 

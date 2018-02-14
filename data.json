@@ -1,1 +1,24 @@
-[{"id":"1","task":"makan nasi","is_complete":true,"created_date":"2018-02-14T08:22:38.449Z","completed_date":"2018-02-14T08:33:44.259Z","tag":["makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore","makan","pagi","sore"]},{"id":"2","task":"makan bubur","is_complete":true,"created_date":"2018-02-14T08:22:47.936Z","completed_date":"2018-02-14T08:33:40.750Z","tag":["makan","pagi","sore"]}]
+[
+    {
+        "id": "1",
+        "task": "makan nasi",
+        "is_complete": true,
+        "created_date": "2018-02-14T08:22:38.449Z",
+        "completed_date": "2018-02-14T08:33:44.259Z",
+        "tag": [
+            "makan",
+            "pagi"
+        ]
+    },
+    {
+        "id": "2",
+        "task": "makan bubur",
+        "is_complete": true,
+        "created_date": "2018-02-14T08:22:47.936Z",
+        "completed_date": "2018-02-14T08:33:40.750Z",
+        "tag": [
+            "pagi",
+            "sore"
+        ]
+    }
+]
