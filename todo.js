@@ -1,5 +1,7 @@
 "use strict"
 
+const ModelTodo = require ('./model.js')
+
 class ToDo{
     constructor(){
 
@@ -7,7 +9,7 @@ class ToDo{
     static command(argvInput){
         switch(argvInput[2]){
             default: 
-                console.log('you will call help')
+                console.log('you will call "help"')
                 break
             case 'help':
                 let result = [
@@ -20,10 +22,11 @@ class ToDo{
                     '$ node todo.js complete <task_id>',
                     '$ node todo.js uncomplete <task_id>',
                 ]
-                return result.join('\n')
+                result = result.join('\n')
+                return console.log(result)
                 break
             case 'list':
-                console.log('ini list anda')
+                ModelTodo.showList()
                 break
             case 'add':
                 console.log('add list anda')
@@ -40,6 +43,7 @@ class ToDo{
             case 'uncomplete':
                 console.log('task list anda yang belum selesai')
                 break
+            
         }
     }
 }
@@ -47,5 +51,5 @@ class ToDo{
 const syntax = process.argv
 
 let todo = new ToDo()
-console.log(ToDo.command(syntax))
+ToDo.command(syntax)
 
