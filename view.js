@@ -23,28 +23,77 @@ class View {
     })
   }
 
-  findByIdJSON(id) {
+  findByIdJSON(id, err, data) {
     // this.id_look
-    this.readDataJSON(function(err, data){
-      let array = JSON.parse(data)
-      console.log(`${id}. ${array[id-1].task}`);
-    })
+    // this.readDataJSON(function(err, data){
+    // })
+    let array = JSON.parse(data)
+    console.log(`${id}. ${array[id-1].task}`);
   }
 
-  displayDataJSON(callback) {
-    this.readDataJSON(function(err, data){
-      let array = JSON.parse(data)
-      for (let i = 0; i < array.length; i++) {
-        if(array[i].check === undefined) {
-          array[i].check = ' '
-        }
+  displayDataJSON(err, data) {
+    // this.readDataJSON(function(err, data){
+    //
+    // })
+    let array = JSON.parse(data)
+    for (let i = 0; i < array.length; i++) {
+      if(array[i].check === undefined) {
+        array[i].check = ' '
       }
-      console.log(array);
-      for (let i = 0; i < array.length; i++) {
-        console.log(`${i+1}. [${array[i].check}] ${array[i].task}`);
-      }
-    })
+    }
+    for (let i = 0; i < array.length; i++) {
+      console.log(`${i+1}. [${array[i].check}] ${array[i].task}`);
+    }
   }
+
+  displaySortCreatedJSON(sortDirection, err, data) {
+    // this.readDataJSON(function(err, data){
+    // })
+    let array = JSON.parse(data)
+    if (sortDirection === 'desc') {
+      array.sort(function(a, b){
+        return new Date(b.created).getTime() - new Date(a.created).getTime()
+      })
+    } else if (sortDirection === 'asc' || sortDirection === undefined) {
+      array.sort(function(a, b){
+        return new Date(a.created).getTime() - new Date(b.created).getTime()
+      })
+    }
+    // console.log(array);
+    for (let i = 0; i < array.length; i++) {
+      console.log(`${i+1}. [${array[i].check}] ${array[i].task} created at: ${array[i].created}`);
+    }
+  }
+
+  displaySortCheckJSON(sortDirection, err, data) {
+    // this.readDataJSON(function(err, data){
+    // })
+    let array = JSON.parse(data)
+    let arrayChecked = []
+    let arrayNotChecked = []
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].completedDate !== '') {
+        arrayChecked.push(array[i])
+      } else {
+        arrayNotChecked.push(array[i])
+      }
+    }
+    if (sortDirection === 'desc') {
+      arrayChecked.sort(function(a, b){
+        return new Date(b.completedDate).getTime() - new Date(a.completedDate).getTime()
+      })
+    } else if (sortDirection === 'asc' || sortDirection === undefined) {
+      arrayChecked.sort(function(a, b){
+        return new Date(a.created).getTime() - new Date(b.created).getTime()
+      })
+    }
+    let sortedArray = arrayChecked.concat(arrayNotChecked)
+    for (let i = 0; i < sortedArray.length; i++) {
+      console.log(`${i+1}. [${sortedArray[i].check}] ${sortedArray[i].task} completed at: ${sortedArray[i].completedDate}`);
+    }
+  }
+
+
 }
 
 module.exports = {

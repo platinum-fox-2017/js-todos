@@ -88,6 +88,9 @@ class DataProcess {
         if(array[i].check === undefined) {
           array[i].check = ' '
         }
+        if (array[i].created === undefined) {
+          array[i].created = new Date()
+        }
       }
       let jsonData = JSON.stringify(array)
 
@@ -105,11 +108,15 @@ class DataProcess {
     this.readDataJSON(function(err, data){
       let array = JSON.parse(data)
       for (let i = 0; i < array.length; i++) {
-        if(array[i].check === undefined) {
-          array[i].check = ' '
+        // if(array[i].check === undefined) {
+        //   array[i].check = ' '
+        // }
+        if(array[i].completedDate === undefined) {
+          array[i].completedDate = ''
         }
         if (id-1 === i) {
           array[i].check = 'X'
+          array[i].completedDate = new Date()
         }
       }
       let jsonData = JSON.stringify(array)
@@ -128,9 +135,12 @@ class DataProcess {
     this.readDataJSON(function(err, data){
       let array = JSON.parse(data)
       for (let i = 0; i < array.length; i++) {
-        if(array[i].check === undefined) {
-          array[i].check = ' '
+        if(array[i].completedDate !== undefined) {
+          array[i].completedDate = ''
         }
+        // if(array[i].check === undefined) {
+        //   array[i].check = ' '
+        // }
         if (id-1 === i) {
           array[i].check = ' '
         }

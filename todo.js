@@ -7,9 +7,10 @@ let controlFile = require('./controller.js')
 const Controller = controlFile.Controller
 // receive input
 let argv = process.argv // 2
+// versi teddy
 let control_process= new Controller(argv)
+control_process.readCommand(argv)
 
-control_process.readCommand()
 
 // let data_process = new DataProcess(argv)
 // let view_process = new view.View()
