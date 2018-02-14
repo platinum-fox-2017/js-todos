@@ -13,13 +13,10 @@ class Controller {
     }
 
     static find_by_id(id){
-        // return View.find_by_id(Model.find_by_id(id));
         return Model.find_by_id(id, View.find_by_id)
     }
-
-
-    static not_found(){
-        return View.not_found();
+    static delete_to_do(delete_task){
+        return View.delete_to_do(Model.delete_to_do(delete_task));
     }
 }
 

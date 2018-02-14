@@ -26,6 +26,11 @@ class Model{
         }
         if (counter === Model.to_do_list().length) cb(err);
     }
+    static delete_to_do(delete_task){
+        let deleted_data =data.splice(delete_task,1);
+        fs.writeFileSync('./data.json',JSON.stringify(Model.to_do_list()));
+        return deleted_data;
+    }
 }
 
 module.exports = Model;

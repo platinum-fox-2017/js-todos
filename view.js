@@ -23,7 +23,15 @@ class View {
         console.log('=========================================================');
     }
     static find_by_id(data){
+        console.log('====================  DELETED  ==========================');
         console.log(data);
+        console.log('=========================================================');
     }
+    static delete_to_do(delete_task){
+        console.log('====================  DELETED  ==========================');
+        console.log(delete_task);
+        console.log('=========================================================');
+    }
+
 }
 module.exports = View;
