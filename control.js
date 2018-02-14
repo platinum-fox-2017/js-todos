@@ -52,9 +52,9 @@ class TODOControls {
 					TODOControls.filter(this.command.split(':')[1]);
 					break;
 				}
-				default : 
-				console.log(
-		`Usage: node "JS Todos.js" <command>
+				default :
+				TODOViews.showMessage(
+					`Usage: node "JS Todos.js" <command>
 
 where <command> is one of:
 	help			menampilkan command apa saja yang tersedia
@@ -63,10 +63,9 @@ where <command> is one of:
 	findById <task_id>	melihat detail TODO sesuai \`task_id\` nya
 	delete <task_id>	menghapus TODO sesuai \`task_id\` nya
 	complete <task_id>	menandai status TODO selesai
-	uncomplete <task_id>	menandai status TODO belum selesai`
-				);
+	uncomplete <task_id>	menandai status TODO belum selesai`);
 			}
-		} else console.log(
+		} else TODOViews.showMessage(
 		`Usage: node "JS Todos.js" <command>
 
 where <command> is one of:
