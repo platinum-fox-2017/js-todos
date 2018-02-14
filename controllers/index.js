@@ -37,6 +37,44 @@ class Controllers {
       let list = models.list()
       views.showList(list)
     }
+    else if(command === 'list:created'){
+      if(task === 'desc'){
+        let list = models.sortDesc()
+        views.showList(list)
+      }
+      else {
+        let list = models.sort()
+        views.showList(list)
+      }
+    }
+    else if(command === 'list:completed'){
+      if(task === 'desc'){
+        let list = models.listCompletedDesc()
+        views.showList(list)
+      }
+      else {
+        let list = models.listCompleted()
+        views.showList(list)
+      }
+    }
+    else if(command === 'list:uncompleted'){
+      if(task === 'desc'){
+        let list = models.listUncompletedDesc()
+        views.showList(list)
+      }
+      else {
+        let list = models.listUncompleted()
+        views.showList(list)
+      }
+    }
+    else if(command === 'tag'){
+      let tag = models.tag(task)
+      views.showTag(tag)
+    }
+    else if(command === 'filter'){
+      let filter = models.filter(task)
+      views.showList(filter)
+    }
     else {
       views.showHelp()
     }
