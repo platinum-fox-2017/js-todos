@@ -1,8 +1,1 @@
-[{
-    "id": "1",
-    "task": "Todo list test 1"
-    },
-{
-    "id": "2",
-    "task": "Todo list test 2"
-    }]
+[{"id":1,"task":"Todo list test 1","isCompleted":true},{"id":2,"task":"Todo list test 2","isCompleted":true},{"id":3,"task":"hello this is number 3","isCompleted":false},{"id":4,"task":"hello this is number 4","isCompleted":false}]
