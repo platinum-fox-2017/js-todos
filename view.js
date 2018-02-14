@@ -11,27 +11,28 @@ class View {
         console.log('=========================================================');
     }
     static to_do_list(data){
-        console.log('====================TO-DO LIST===========================');
+        console.log('=========================================================');
         data.forEach((v,i,a)=>{
-            console.log(`NO-${i}-----------${v.status}${v.task}`);
+            console.log(`NO-${i}-----------${v.status}${v.task}//${v.created_at}//${v.completed_date}`);
         });
         console.log('=========================================================');
     }
     static add_to_do(new_task){
-        console.log('====================   ADDED  ===========================');
-        console.log(`Added ${new_task} to your to-do list`)
-        console.log('=========================================================');
+        console.log(`Added ${new_task} to your to-do list`);
     }
     static find_by_id(data){
-        console.log('====================   FOUND   ==========================');
         console.log(data);
-        console.log('=========================================================');
     }
     static delete_to_do(delete_task){
-        console.log('====================  DELETED  ==========================');
-        console.log(delete_task);
-        console.log('=========================================================');
+        console.log(`Deleted ${delete_task} from your to_do list`);
     }
-
+    static tag(array){
+        console.log(`Tagged task ${array[0].task} with tags: ${array[0].tag}`);
+    }
+    static filter(array){
+        array.forEach((v,i,a)=>{
+            console.log(`${v.task} [${v.tag}]`);
+        })
+    }
 }
 module.exports = View;

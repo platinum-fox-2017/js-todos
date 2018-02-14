@@ -11,7 +11,6 @@ class Controller {
     static add_to_do(new_task){
         return View.add_to_do(Model.add_to_do(new_task));
     }
-
     static find_by_id(id){
         return Model.find_by_id(id, View.find_by_id)
     }
@@ -23,6 +22,18 @@ class Controller {
     }
     static uncomplete(uncheck){
         return View.to_do_list(Model.uncomplete(uncheck));
+    }
+    static outstanding(ascdesc){
+        return View.to_do_list(Model.outstanding(ascdesc));
+    }
+    static completed(ascdesc){
+        return View.to_do_list(Model.completed(ascdesc));
+    }
+    static tag(index,tags_to_be_added){
+        return View.tag(Model.tag(index,tags_to_be_added));
+    }
+    static filter(tag){
+        return View.filter(Model.filter(tag));
     }
 }
 
