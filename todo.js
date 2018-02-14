@@ -1,6 +1,51 @@
-var input_argv = process.argv;
-if (!input_argv[2] || input_argv[2] == 'help')
-	console.log(
+"use strict"
+
+const fs = require('fs');
+const dataJSON = './data.json';
+
+class TODO {
+	constructor() {}
+
+	static list(data) {
+		for (let i = 0; i < data.length; i++) {
+			console.log(`${data[i].id}. ${data[i].todo}`);
+		}
+	}
+
+	static readFile(dataJSON, callback) {
+		fs.readFile('data.json', 'utf8', function (err, data) {
+			if (err) console.log(err);
+			else {
+				let dataObj = JSON.parse(data);
+				callback(dataObj);
+			}
+		});
+	}
+}
+
+let input_argv = process.argv;
+
+switch (input_argv[2]) {
+	case 'list': {
+		TODO.readFile(dataJSON, TODO.list);
+		break;
+	}
+	case 'add' : {
+
+	}
+	case 'findById' : {
+
+	}
+	case 'delete' : {
+
+	}
+	case 'complete' : {
+
+	}
+	case 'uncomplete' : {
+
+	}
+	default : console.log(
 		`Usage: node "JS Todos.js" <command>
 
 where <command> is one of:
@@ -13,3 +58,4 @@ where <command> is one of:
 	uncomplete <task_id>	menandai status TODO belum selesai
 		`
 		);
+}
