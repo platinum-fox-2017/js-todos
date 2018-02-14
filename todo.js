@@ -9,7 +9,7 @@ class TODO {
 	static list(path) {
 		TODO.readFile(path, function (dataObj) {
 			for (let i = 0; i < dataObj.length; i++) {
-				console.log(`${dataObj[i].id}. ${dataObj[i].todo}`);
+				console.log(`${dataObj[i].id}. [${dataObj[i].status ? 'x' : ' '}] ${dataObj[i].todo}`);
 			}
 		});
 	}
@@ -18,7 +18,8 @@ class TODO {
 		TODO.readFile(path, function (dataObj, callback) {
 			let newObj = {
 				id : (Number(dataObj[dataObj.length - 1].id) + 1).toString(),
-				todo : data
+				todo : data,
+				status : false
 			};
 
 			dataObj.push(newObj);
@@ -38,12 +39,12 @@ class TODO {
 		});
 	}
 
-	static delete(path, data) {
+	static delete(path, id) {
 		TODO.readFile(path, function (dataObj, callback) {
 			let deletedData = '';
 
 			for (let i = 0; i < dataObj.length; i++) {
-				if (dataObj[i].id == data) {
+				if (dataObj[i].id == id) {
 					deletedData = dataObj[i].todo;
 					dataObj.splice(i, 1);
 					break;
@@ -53,6 +54,38 @@ class TODO {
 			TODO.writeFile(path, dataObj);
 
 			console.log(`deleted ${deletedData} from your TODO list...`);
+		});
+	}
+
+	static complete(path, id) {
+		TODO.readFile(path, function (dataObj, callback) {
+			let deletedData = '';
+
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].id == id) {
+					dataObj[i].status = true;
+					break;
+				}
+			}
+
+			TODO.writeFile(path, dataObj);
+			TODO.list(path);
+		});
+	}
+
+	static uncomplete(path, id) {
+		TODO.readFile(path, function (dataObj, callback) {
+			let deletedData = '';
+
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].id == id) {
+					dataObj[i].status = false;
+					break;
+				}
+			}
+
+			TODO.writeFile(path, dataObj);
+			TODO.list(path);
 		});
 	}
 
@@ -93,10 +126,12 @@ switch (input_argv[2]) {
 		break;
 	}
 	case 'complete' : {
-
+		TODO.complete(path, input_argv[3]);
+		break;
 	}
 	case 'uncomplete' : {
-
+		TODO.uncomplete(path, input_argv[3]);
+		break;
 	}
 	default : console.log(
 		`Usage: node "JS Todos.js" <command>
