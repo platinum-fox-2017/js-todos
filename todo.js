@@ -10,9 +10,10 @@ switch(true){
     Controller.show_help();
     break;
     case(command === 'list'):
-    Controller.show_to_do_list();
+    Controller.to_do_list();
     break;
     case(command === 'add'):
+    Controller.add_to_do(value);
     break;
     case(command === 'find_by_id'):
     break;

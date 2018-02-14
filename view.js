@@ -16,7 +16,11 @@ class View {
             console.log(`NO-${i}--------${v.task}`);
         });
         console.log('=========================================================');
-
+    }
+    static add_to_do(new_task){
+        console.log('====================   ADDED  ===========================');
+        console.log(`Added ${new_task} to your to-do list`)
+        console.log('=========================================================');
     }
 }
 module.exports = View;
