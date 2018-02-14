@@ -1,1 +1,96 @@
-[]
+[
+    {
+        "id": 1,
+        "content": "bangun",
+        "complete": false,
+        "tags": [],
+        "createdAt": "2018-02-14T06:46:22.111Z",
+        "updatedAt": null
+    },
+    {
+        "id": 4,
+        "content": "coding",
+        "complete": false,
+        "tags": [
+            "Hacktiv8"
+        ],
+        "createdAt": "2018-02-14T07:01:17.821Z",
+        "updatedAt": "2018-02-14T07:45:26.643Z"
+    },
+    {
+        "id": 5,
+        "content": "makan",
+        "complete": false,
+        "tags": [],
+        "createdAt": "2018-02-14T07:01:22.566Z",
+        "updatedAt": "2018-02-14T07:02:20.008Z"
+    },
+    {
+        "id": 8,
+        "content": "error",
+        "complete": false,
+        "tags": [],
+        "createdAt": "2018-02-14T07:01:36.944Z",
+        "updatedAt": null
+    },
+    {
+        "id": 9,
+        "content": "pusing",
+        "complete": true,
+        "tags": [],
+        "createdAt": "2018-02-14T07:01:39.778Z",
+        "updatedAt": "2018-02-14T07:46:01.545Z"
+    },
+    {
+        "id": 10,
+        "content": "debug",
+        "complete": true,
+        "tags": [
+            "Hacktiv8"
+        ],
+        "createdAt": "2018-02-14T07:01:44.539Z",
+        "updatedAt": "2018-02-14T07:47:00.559Z"
+    },
+    {
+        "id": 12,
+        "content": "yasudahlah",
+        "complete": true,
+        "tags": [],
+        "createdAt": "2018-02-14T07:01:55.858Z",
+        "updatedAt": "2018-02-14T07:47:05.026Z"
+    },
+    {
+        "id": 15,
+        "content": "makan nasi",
+        "complete": true,
+        "tags": [],
+        "createdAt": "2018-02-14T07:12:47.791Z",
+        "updatedAt": "2018-02-14T07:47:08.393Z"
+    },
+    {
+        "id": 16,
+        "content": "makan nasi",
+        "complete": false,
+        "tags": [],
+        "createdAt": "2018-02-14T07:14:19.073Z",
+        "updatedAt": "2018-02-14T12:29:51.154Z"
+    },
+    {
+        "id": 17,
+        "content": "minum",
+        "complete": false,
+        "tags": [],
+        "createdAt": "2018-02-14T07:14:24.378Z",
+        "updatedAt": null
+    },
+    {
+        "id": 18,
+        "content": "lari",
+        "complete": false,
+        "tags": [
+            "Hacktiv8"
+        ],
+        "createdAt": "2018-02-14T11:00:04.468Z",
+        "updatedAt": null
+    }
+]
