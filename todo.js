@@ -10,5 +10,5 @@ switch(argv[2]){
   case 'delete': model.modelDataDelete(view.viewDataDelete);break;
   case 'complete': model.modelFinished(view.viewFinished);break;
   case 'uncomplete': model.modelUnfinished(view.viewUnfinished);break;
-  default: console.log('testsssss');
+  default: console.log('Masukkan perintah yang benar');
 }
