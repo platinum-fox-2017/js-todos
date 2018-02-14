@@ -22,6 +22,8 @@ class Views {
     console.log('list:created <asc/desc>');
     console.log('list:completed <asc/desc>');
     console.log('list:uncompleted <asc/desc>');
+    console.log('tag <tag>');
+    console.log('filter:<tag>');
   }
   showList(list){
     for(let i=0; i<list.length; i++){
