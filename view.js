@@ -1,18 +1,22 @@
+const chalk = require('chalk');
+
+
+
 class View {
   constructor() {
 
   }
   static doNothing() {
-    console.log('Unknown command! please type `node todo.js help` for more information');
+    console.log(chalk.blue('Unknown command! please type `node todo.js help` for more information'));
   }
 
   static showHelp() {
-    console.log('list');
-    console.log('add <task_content>');
-    console.log('findById <task_id>');
-    console.log('delete <task.id>');
-    console.log('complete <task_id>');
-    console.log('uncomplete <task_id>');
+    console.log(chalk.blue('list'));
+    console.log(chalk.red('add <task_content>'));
+    console.log(chalk.yellow('findById <task_id>'));
+    console.log(chalk.green('delete <task.id>'));
+    console.log(chalk.white('complete <task_id>'));
+    console.log(chalk.blue('uncomplete <task_id>'));
   }
 
   static showList(data_from_cont) {
