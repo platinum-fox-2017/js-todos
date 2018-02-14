@@ -7,7 +7,7 @@ class ToDoController {
         this.toDoModelList  = new ToDoModel.List();
     }
 
-    start(options,otherTask) {
+    start(options,param1,arrArgv) {
         switch(options) {
             case "help":
                 this.toDoView.showHelp();
@@ -16,19 +16,31 @@ class ToDoController {
                 this.toDoModelList.readData(this.toDoView.showList);
                 break;
             case "add":
-                this.toDoModelList.storeTask(otherTask,this.toDoView.storeTask); 
+                this.toDoModelList.storeTask(param1,this.toDoView.storeTask); 
                 break;
             case "findById":
-                this.toDoModelList.findTaskById(otherTask,this.toDoView.showById);
+                this.toDoModelList.findTaskById(param1,this.toDoView.showById);
                 break;
             case "delete":
-                this.toDoModelList.deleteTaskById(otherTask,this.toDoView.deleteTask);
+                this.toDoModelList.deleteTaskById(param1,this.toDoView.deleteTask);
                 break;
             case "complete":
-                this.toDoModelList.completeTask(otherTask,this.toDoView.showList);
+                this.toDoModelList.completeTask(param1,this.toDoView.showList);
                 break;
             case "uncomplete":
-                this.toDoModelList.unCompleteTask(otherTask,this.toDoView.showList);
+                this.toDoModelList.unCompleteTask(param1,this.toDoView.showList);
+                break;
+            case "list:created":
+                this.toDoModelList.readDataSorted(param1,this.toDoView.showList);                
+                break;
+            case "list:completed":
+                this.toDoModelList.readCompletedDataSorted(param1,this.toDoView.showList);                
+                break;        
+            case "tag":
+                this.toDoModelList.createTag(param1,arrArgv,this.toDoView.addTag);
+                break;  
+            case "filter":
+                this.toDoModelList.filterTag(param1, this.toDoView.filteredTag);
                 break;
         }
     }

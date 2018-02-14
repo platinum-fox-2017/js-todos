@@ -9,7 +9,11 @@ class ToDoView {
             "node todo.js findById <task_id>",
             "node todo.js delete <task_id>",
             "node todo.js complete <task_id>",
-            "node todo.js uncomplete <task_id>"
+            "node todo.js uncomplete <task_id>",
+            "node todo.js list:created asc|desc",
+            "node todo.js list:completed asc|desc",
+            "node todo.js tag <task_id> <tag1> <tag2> <tag3> ....",
+            "node todo.js filter <tag>",
         ];
     }
 
@@ -39,6 +43,20 @@ class ToDoView {
 
     deleteTask(taskName) {
         console.log('Deleted ' + taskName + ' from your TODO list...');
+    }
+
+    addTag(taskName,arrTag) {
+        let str = ''
+        for(let i = 0; i < arrTag.length; i++) {
+            str = str + arrTag[i] + " ";
+        }
+        console.log("Tagged task " + taskName + " with tags: " + str);
+    }
+
+    filteredTag(matchTagData) {
+        for(let i = 0; i < matchTagData.length; i++) {
+            console.log(matchTagData[i].id + ". "+  matchTagData[i].task  + " [" + matchTagData[i].tag + "]");
+        }
     }
 }
 

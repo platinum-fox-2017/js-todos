@@ -3,12 +3,11 @@ const ToDoController = require('./ToDoController');
 let toDoController   = new ToDoController();
 let myArgv           = process.argv;
 
-toDoController.start(myArgv[2],myArgv[3]);
+var command = myArgv[2]
+var command2 = myArgv[3]
+var arrArgv =[]
+for(let i = 4;i < myArgv.length;i++) {
+    arrArgv.push(myArgv[i])
+}
 
-// let jsondata = [
-//     {"halo" : "ya"},
-//     {"apakabs" : "baik"}
-// ]
-
-// let str = JSON.stringify(jsondata)
-// console.log(str);
+toDoController.start(command,command2,arrArgv);
