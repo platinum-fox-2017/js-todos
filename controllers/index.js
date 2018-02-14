@@ -30,6 +30,24 @@ class Controller {
             Model.uncomplete(input)
             let data = Model.getData()
             View.showData(data)
+        } else if (command === 'list:created' && input === 'asc') {
+            let data = Model.sortTaskAscending(command)
+            View.showData(data)
+        } else if (command === 'list:created' && input === 'dsc') {
+            let data = Model.sortTaskDescending(command)
+            View.showData(data)
+        } else if (command === 'list:completed' && input === 'asc') {
+            let data = Model.sortTaskAscending(command)
+            View.showData(data)
+        } else if (command === 'list:completed' && input === 'dsc') {
+            let data = Model.sortTaskDescending(command)
+            View.showData(data)
+        } else if (command === 'tag') {
+            let data = Model.addTag(input)
+            View.addedTag(data)
+        } else if (command === 'filter:') {
+            let data = Model.filterTag(input)
+            View.showData(data)
         } else {
             View.getHelp()
         }
