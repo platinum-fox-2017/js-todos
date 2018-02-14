@@ -117,8 +117,10 @@ class Models {
   filter(task){
     let result = []
     for(let i=0; i<this._data.length; i++){
-      if(this._data[i].tag.indexOf(task[0]) === 0){
-        result.push(this._data[i])
+      for(let j=0; j<this._data[i].tag.length; j++){
+        if(this._data[i].tag[j].indexOf(task[0]) === 0){
+          result.push(this._data[i])
+        }
       }
     }
     return result
