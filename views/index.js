@@ -1,4 +1,9 @@
 const chalk = require('chalk')
+var Table = require('cli-table')
+var table = new Table({
+    head: ['Number', 'To-Do List', 'Tags', 'Status']
+  , colWidths: [10, 20, 20, 10]
+})
 
 class Views {
   constructor() {
@@ -20,8 +25,10 @@ class Views {
   }
   showList(list){
     for(let i=0; i<list.length; i++){
-      console.log(`${i+1}. ${list[i].done} ${list[i].task} [${chalk.green(list[i].tag)}]`);
+      // console.log(`${i+1}. ${list[i].done} ${list[i].task} [${chalk.green(list[i].tag)}]`);
+      table.push([i+1, list[i].task, chalk.green(list[i].tag), list[i].done])
     }
+    console.log(table.toString());
   }
   showAdd(add){
     console.log(chalk.cyan(`Added "${chalk.blue(add)}" to your TODO list.`));
