@@ -1,1 +1,8 @@
-[]
+[{
+    "id": "1",
+    "task": "Todo list test 1"
+    },
+{
+    "id": "2",
+    "task": "Todo list test 2"
+    }]
