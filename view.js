@@ -14,7 +14,7 @@ class View{
     });
 
     t.push(
-      ["1.","node todo.js", "help"],
+      [Chalk.blue("1."),Chalk.red("node todo.js"),Chalk.green("help")],
       ['2.','node todo.js list','showing all of your task'],
       ['3.','node todo.js add(task content)','add task'],
       ['4.','node todo.js findByID(id)','show your searched task by id'],
@@ -33,11 +33,11 @@ class View{
   static showList(detailList){
     var t = new Table({
       head : ['No.','Finished?','To Do List','Tags'],
-      
+
     })
 
     for(let i = 0;i<detailList.length;i++){
-        t.push([i+1+'. ',detailList[i].status,detailList[i].task,detailList[i].tag])
+        t.push([Chalk.blue(i+1+'. '),Chalk.red(detailList[i].status),detailList[i].task,detailList[i].tag])
       }
     console.log("" + t)
   }

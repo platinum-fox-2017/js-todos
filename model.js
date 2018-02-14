@@ -147,12 +147,12 @@ class Model{
     return read
   }
 
-  static removeTag(task_by_user){
-    let temp = task_by_user.split(' ')
+  static removeTag(task_by_user,task_by_user2){
+    // console.log('ini',task_by_user,task_by_user2);
     let read = Model.read()
     for(let i = 0;i<read.length;i++){
-      if(i+1 == temp[0]){
-        read[i].tag = []
+      if(i+1 == task_by_user){
+        read[i].tag.splice(task_by_user2-1,1)
       }
     }
     fs.writeFileSync('./data.json',JSON.stringify(read))
