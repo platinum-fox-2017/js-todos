@@ -1,7 +1,7 @@
 "use strict"
 
 const fs = require('fs');
-const dataJSON = './data.json';
+const path = './data.json';
 
 class TODO {
 	constructor() {}
@@ -12,13 +12,32 @@ class TODO {
 		}
 	}
 
-	static readFile(dataJSON, callback) {
-		fs.readFile('data.json', 'utf8', function (err, data) {
+	static add(path, data) {
+		TODO.readFile(path, function (dataObj, callback) {
+			let newObj = {
+				id : (Number(dataObj[dataObj.length - 1].id) + 1).toString(),
+				todo : data
+			};
+
+			dataObj.push(newObj);
+			TODO.writeFile(path, dataObj);
+		})
+	}
+
+	static readFile(path, callback) {
+		fs.readFile(path, 'utf8', function (err, data) {
 			if (err) console.log(err);
 			else {
 				let dataObj = JSON.parse(data);
 				callback(dataObj);
 			}
+		});
+	}
+
+	static writeFile(path, data) {
+		fs.writeFile(path, JSON.stringify(data), (err) => {
+		  if (err) console.log(err);
+		  else console.log(`Added ${data[data.length - 1].todo} to your TODO list...`);
 		});
 	}
 }
@@ -27,11 +46,12 @@ let input_argv = process.argv;
 
 switch (input_argv[2]) {
 	case 'list': {
-		TODO.readFile(dataJSON, TODO.list);
+		TODO.readFile(path, TODO.list);
 		break;
 	}
 	case 'add' : {
-
+		TODO.add(path, input_argv[3]);
+		break;
 	}
 	case 'findById' : {
 
