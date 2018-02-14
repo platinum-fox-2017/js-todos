@@ -23,6 +23,8 @@ class TODO {
 
 			dataObj.push(newObj);
 			TODO.writeFile(path, dataObj);
+
+			console.log(`Added ${dataObj[dataObj.length - 1].todo} to your TODO list...`);
 		});
 	}
 
@@ -33,6 +35,24 @@ class TODO {
 					console.log(`${dataObj[i].id}. ${dataObj[i].todo}`);
 				}
 			}
+		});
+	}
+
+	static delete(path, data) {
+		TODO.readFile(path, function (dataObj, callback) {
+			let deletedData = '';
+
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].id == data) {
+					deletedData = dataObj[i].todo;
+					dataObj.splice(i, 1);
+					break;
+				}
+			}
+
+			TODO.writeFile(path, dataObj);
+
+			console.log(`deleted ${deletedData} from your TODO list...`);
 		});
 	}
 
@@ -49,7 +69,6 @@ class TODO {
 	static writeFile(path, data) {
 		fs.writeFile(path, JSON.stringify(data), (err) => {
 		  if (err) console.log(err);
-		  else console.log(`Added ${data[data.length - 1].todo} to your TODO list...`);
 		});
 	}
 }
@@ -70,7 +89,8 @@ switch (input_argv[2]) {
 		break;
 	}
 	case 'delete' : {
-
+		TODO.delete(path, input_argv[3]);
+		break;
 	}
 	case 'complete' : {
 
