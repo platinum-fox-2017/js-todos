@@ -21,6 +21,74 @@ class ToDoView {
         }
     }
 
+    static list_created(task,option){
+        let arrTemp = task.map(x=>x);
+        if(option==undefined || option=='dsc'){
+            arrTemp.sort((a,b) => {
+                if((new Date(a.date)) >(new Date(b.date)))
+                    return -1;
+                else if((new Date(a.date)) <(new Date(b.date)))
+                    return 1
+                return 0;
+            })
+        }
+        else{
+            arrTemp.sort((a,b) => {
+                if((new Date(a.date)) >(new Date(b.date)))
+                    return 1;
+                else if((new Date(a.date)) <(new Date(b.date)))
+                    return -1
+                return 0;
+            });
+        }
+        for (let i = 0; i < arrTemp.length; i++) {
+            console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+        }
+
+    }
+
+    static tag(task, tags){
+        if(tags != undefined){
+            console.log(`Tagged task "${task}" with tags ${tags.join(" ")}`);
+        }
+    }
+
+    static list_filter(task, tags){
+        let arrTemp = task.map(x=>x);
+        arrTemp.sort((a,b) => {
+            if((new Date(a.date)) >(new Date(b.date)))
+                return -1;
+            else if((new Date(a.date)) <(new Date(b.date)))
+                return 1
+            return 0;
+        });
+
+        for (let i = 0; i < arrTemp.length; i++) {
+            if(arrTemp[i].tag.indexOf(tags)!=-1)
+            {
+                console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+            }
+        }
+    }
+
+    static list_completed(task){
+        let arrTemp = task.map(x=>x);
+        arrTemp.sort((a,b) => {
+            if((new Date(a.date)) >(new Date(b.date)))
+                return -1;
+            else if((new Date(a.date)) <(new Date(b.date)))
+                return 1
+            return 0;
+        });
+
+        for (let i = 0; i < arrTemp.length; i++) {
+            if(arrTemp[i].done==true)
+            {
+                console.log(`${task.indexOf(arrTemp[i])+1}. ${this.done_to_char(arrTemp[i].done)} ${arrTemp[i].task}`);
+            }
+        }
+    }
+
     static list(task) {
         for (let i = 0; i < task.length; i++) {
             console.log(`${i+1}. ${this.done_to_char(task[i].done)} ${task[i].task}`);

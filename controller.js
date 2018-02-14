@@ -11,18 +11,26 @@ class ToDoController {
         this._task = this._model.task;
     }
 
-    // update(){
-    //     this._model = new ToDoModel();
-    //     this._task = this._model.task;
-    // }
-
     check_input() {
         switch (this._todoCommand) {
             case 'help':
                 ToDoView.help();
                 break;
+            case 'tag':
+                this._model.tag(this._todoOption,process.argv.slice(4));
+                ToDoView.tag(this._task[this._todoOption-1].task,process.argv.slice(4))
+                break;
             case 'list':
                 ToDoView.list(this._task);
+                break;
+            case 'list:created':
+                ToDoView.list_created(this._task,this._todoOption);
+                break;
+            case 'list:completed':
+                ToDoView.list_completed(this._task);
+                break;
+            case 'filter':
+                ToDoView.list_filter(this._task,this._todoOption);
                 break;
             case 'add':
                 if(this._todoOption == undefined){

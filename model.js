@@ -3,6 +3,8 @@
 const fs = require('fs');
 // const dataFile = fs.readFileSync('./data.json', 'utf8');
 
+
+
 class ToDoModel {
     constructor(data) {
         this._data = data;
@@ -20,10 +22,18 @@ class ToDoModel {
         });
     }
 
+    tag(id, tags){
+        for(let i = 0; i < tags.length; i++){
+            this._task[id-1].tag.push(tags[i]);
+        }
+        this.write(this._task);
+    }
+
     add(input) {
         this._task.push({
             "task": input,
-            "done": false
+            "done": false,
+            "date": new Date().toString()
         });
         this.write(this._task);
     }
