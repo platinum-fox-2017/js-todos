@@ -1,5 +1,4 @@
 //todo.js File
-const fs = require('fs');
 const ToDoController = require('./controller').Controller;
 
 // const dataFile = fs.readFileSync('./data.json', 'utf8');
