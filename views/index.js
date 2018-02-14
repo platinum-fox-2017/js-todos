@@ -1,3 +1,5 @@
+const chalk = require('chalk')
+
 class Views {
   constructor() {
 
@@ -18,17 +20,17 @@ class Views {
   }
   showList(list){
     for(let i=0; i<list.length; i++){
-      console.log(`${i+1}. ${list[i].done} ${list[i].task} [${list[i].tag}]`);
+      console.log(`${i+1}. ${list[i].done} ${list[i].task} [${chalk.green(list[i].tag)}]`);
     }
   }
   showAdd(add){
-    console.log(`Added "${add}" to your TODO list.`);
+    console.log(chalk.cyan(`Added "${chalk.blue(add)}" to your TODO list.`));
   }
   showById(id){
     console.log(id);
   }
   showDelete(id){
-    console.log(`Deleted "${id}" from your TODO list.`);
+    console.log(chalk.magenta(`Deleted "${chalk.red(id)}" from your TODO list.`));
   }
   showTag(tag){
     console.log(tag);
