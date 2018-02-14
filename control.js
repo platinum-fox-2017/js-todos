@@ -44,6 +44,10 @@ class TODOControls {
 					TODOControls.uncomplete(this.option);
 					break;
 				}
+				case 'tag' : {
+					TODOControls.tag(this.option);
+					break;
+				}
 				default : 
 				console.log(
 		`Usage: node "JS Todos.js" <command>
@@ -157,12 +161,39 @@ where <command> is one of:
 			for (let i = 0; i < dataObj.length; i++) {
 				if (dataObj[i].id == id) {
 					dataObj[i].status = false;
+					dataObj[i].completed_date = '';
 					break;
 				}
 			}
 
 			TODOModels.writeFile(dataObj, function() {
 				TODOControls.list();
+			});
+		});
+	}
+
+	static tag(option) {
+		let id = option.split(' ')[0];
+
+		TODOModels.readFile(function (dataObj) {
+			let name_task = '';
+			let tags = [];
+
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].id == id) {
+					name_task = dataObj[i].todo;
+					for (let j = 1; j < option.split(' ').length; j++) {
+						if (dataObj[i].tag.indexOf(option.split(' ')[j]) == -1) {
+							dataObj[i].tag.push(option.split(' ')[j]);
+							tags.push(option.split(' ')[j]);
+						}
+					}
+					break;
+				}
+			}
+
+			TODOModels.writeFile(dataObj, function() {
+				TODOViews.showMessage(`Tagged task "${name_task}" with tags: ${tags.join(' ')}`);
 			});
 		});
 	}
