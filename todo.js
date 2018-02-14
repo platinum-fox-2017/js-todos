@@ -6,10 +6,12 @@ const path = './data.json';
 class TODO {
 	constructor() {}
 
-	static list(data) {
-		for (let i = 0; i < data.length; i++) {
-			console.log(`${data[i].id}. ${data[i].todo}`);
-		}
+	static list(path) {
+		TODO.readFile(path, function (dataObj) {
+			for (let i = 0; i < dataObj.length; i++) {
+				console.log(`${dataObj[i].id}. ${dataObj[i].todo}`);
+			}
+		});
 	}
 
 	static add(path, data) {
@@ -21,7 +23,17 @@ class TODO {
 
 			dataObj.push(newObj);
 			TODO.writeFile(path, dataObj);
-		})
+		});
+	}
+
+	static findById(path, id) {
+		TODO.readFile(path, function (dataObj) {
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].id == id) {
+					console.log(`${dataObj[i].id}. ${dataObj[i].todo}`);
+				}
+			}
+		});
 	}
 
 	static readFile(path, callback) {
@@ -46,7 +58,7 @@ let input_argv = process.argv;
 
 switch (input_argv[2]) {
 	case 'list': {
-		TODO.readFile(path, TODO.list);
+		TODO.list(path);
 		break;
 	}
 	case 'add' : {
@@ -54,7 +66,8 @@ switch (input_argv[2]) {
 		break;
 	}
 	case 'findById' : {
-
+		TODO.findById(path, input_argv[3]);
+		break;
 	}
 	case 'delete' : {
 
