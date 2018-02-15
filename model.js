@@ -84,8 +84,8 @@ class DataProcess {
         if (err) {
           console.log(err);
         } else {
-          // console.log('message saved');
-          callback(data)
+          // console.log(array);
+          callback(err, array)
         }
       })
     })
@@ -111,8 +111,8 @@ class DataProcess {
         if (err) {
           console.log(err);
         } else {
-          // console.log('message saved');
-          callback(data)
+          // console.log(array);
+          callback(err, array)
         }
       })
     })
@@ -138,7 +138,7 @@ class DataProcess {
         if (err) {
           console.log(err);
         } else {
-          callback(data)
+          callback(err, array)
         }
       })
 

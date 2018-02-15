@@ -92,25 +92,31 @@ class View {
   }
 
   displayAdd(argv){
-    console.log(`message : ${argv[3]} saved`);
+    console.log(`added ${argv[3]} to your TODO list`);
   }
 
   displayDelete(argv, deletedData){
-    console.log(`Deleted ${deletedData.task} from your TODO kist....`);
+    console.log(`Deleted ${deletedData.task} from your TODO list....`);
   }
 
-  displayComplete(argv, data){
-    console.log('data succesfully completed');
+  displayComplete(argv, array){
+    let id = argv[3]-1;
+    console.log(`task ${array[id].task} succesfully completed`);
   }
 
-  displayUncomplete(argv, data){
-    console.log('data succesfully uncompleted');
+  displayUncomplete(argv, array){
+    let id = argv[3]-1;
+    console.log(`task ${array[id].task} succesfully uncompleted`);
   }
 
-  displayTagInfo(argv, data) {
-    let id = argv[3]
-    let tags = argv.slice(4)
-    console.log('tag addition succesful');
+  displayTagInfo(argv, array) {
+    let id = argv[3]-1;
+    let tags = argv.slice(4);
+    let message = `Tagged task ${array[id].task} with task: `;
+    for (var i = 0; i < tags.length; i++) {
+      message += tags[i]+' '
+    }
+    console.log(message);
   }
 
   displaySortFilterJSON(tagCmd, sortDirection, err, data) {

@@ -43,7 +43,7 @@ class Controller {
       case 'complete': data_process.completeDataJSON(argv[2+1], function(err, data){
         view_process.displayComplete(argv, data)
         }); break;
-      case 'uncomplete': data_process.uncompleteDataJSON(argv[2+1],function(data){
+      case 'uncomplete': data_process.uncompleteDataJSON(argv[2+1],function(err,data){
         view_process.displayUncomplete(argv, data)
         }); break;
       case 'list:created': data_process.readDataJSON(function(err, data){
@@ -52,7 +52,7 @@ class Controller {
       case 'list:completed': data_process.readDataJSON(function(err, data){
         view_process.displaySortCheckJSON(argv[2+1], err, data)
         }); break;
-      case 'tag': data_process.tagDataJSON(argv, function(data){
+      case 'tag': data_process.tagDataJSON(argv, function(err, data){
         view_process.displayTagInfo(argv, data)
         }); break;
       case 'filter': data_process.readDataJSON(function(err, data){
