@@ -26,38 +26,45 @@ class ToDoController{
   }
 
   static showList() {
-    let list = model.bacaFile()
-    return view.showList(list)
+    model.bacaFile(function(data) {
+      view.showList(data)
+    })
   }
 
   static addList(newList) {
-    let listUpdate = model.addList(newList)
-    return view.showList(listUpdate)
+    model.addList(newList, function(data) {
+      view.showList(data)
+    })
   }
 
   static findById(num) {
-    let list = model.findById(num)
-    return view.showList(list)
+    model.findById(num, function(data){
+      view.showList(data)
+    })
   }
 
   static deleted(num) {
-    let listUpdate = model.deleted(num)
-    return view.showList(listUpdate)
+    model.deleted(num, function(data) {
+      view.showList(data)
+    })
   }
 
   static complete(num) {
-    let list = model.complete(num)
-    return view.showList(list)
+    model.complete(num, function(data) {
+      view.showList(data)
+    })
   }
 
   static uncomplete(num) {
-    let list = model.uncomplete(num)
-    return view.showList(list)
+    model.uncomplete(num, function(data) {
+      view.showList(data)
+    })
   }
 
   static listC() {
-    let list = model.listC()
-    return view.showList(list)
+    model.listC(function(data) {
+      view.showList(data)
+    })
   }
 
 }
