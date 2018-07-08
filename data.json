@@ -1,1 +1,1 @@
-[]
+[{"task":"eat","status":true,"created_at":1518801777372,"finished_at":1518803522502,"tag":["makan","pagi"]},{"task":"exercise","status":false,"created_at":1518801781815,"finished_at":1518803010688,"tag":["lari","pagi"]},{"task":"lunch","status":false,"created_at":1518801784557,"finished_at":false,"tag":["makan","siang"]},{"task":"dinner","status":false,"created_at":1518801804706,"finished_at":false,"tag":[]},{"task":"sleep","status":false,"created_at":1518803559474,"finished_at":false,"tag":["tidur","cantik"]}]
