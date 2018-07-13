@@ -1,1 +1,1 @@
-[]
+[{"id":1,"task":"Play with cat","isCompleted":false,"tags":["test","cat","play"],"createdAt":"Wed Feb 14 2018 16:28:59 GMT+0700 (WIB)"},{"id":2,"task":"Eat some cookies","isCompleted":true,"tags":["cat"],"createdAt":"Wed Feb 14 2018 16:29:48 GMT+0700 (WIB)"},{"id":3,"task":"Change the world","isCompleted":false,"tags":["play"],"createdAt":"Wed Feb 14 2018 16:30:04 GMT+0700 (WIB)"},{"id":4,"task":"Bake a peanut butter cake","isCompleted":true,"tags":[],"createdAt":"Wed Feb 14 2018 16:30:09 GMT+0700 (WIB)"}]
